@@ -1,4 +1,5 @@
 import './style.css';
+import './pwa.js';
 
 // DOM Elements
 const app = document.getElementById('app');
