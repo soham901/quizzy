@@ -30,22 +30,19 @@ function loadQuestions() {
 // Load sample data if no questions exist
 function loadSampleData() {
   if (questions.length === 0) {
-    // Try to load from data directory
-    fetch('/data/cn/unit-2.json')
-      .then(response => response.json())
-      .then(data => {
-        questions = questions.concat(data);
-        return fetch('/data/cn/unit-3.json');
-      })
-      .then(response => response.json())
-      .then(data => {
-        questions = questions.concat(data);
-        saveQuestions();
-        render();
-      })
-      .catch(error => {
-        console.log('No sample data found, using empty array');
-      });
+    // Load both JSON files when no initial data exists
+    Promise.all([
+      fetch('/data/cn/unit-2.json').then(response => response.json()),
+      fetch('/data/cn/unit-3.json').then(response => response.json())
+    ])
+    .then(([unit2Data, unit3Data]) => {
+      questions = questions.concat(unit2Data, unit3Data);
+      saveQuestions();
+      render();
+    })
+    .catch(error => {
+      console.log('Error loading sample data:', error);
+    });
   }
 }
 
@@ -159,7 +156,7 @@ function renderView() {
   });
   document.getElementById('importQuestions')?.addEventListener('change', importQuestions);
   document.getElementById('clearDatabase')?.addEventListener('click', clearDatabase);
-  
+
   // Add event listeners for edit and delete buttons
   document.querySelectorAll('.edit-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -167,7 +164,7 @@ function renderView() {
       editQuestion(index);
     });
   });
-  
+
   document.querySelectorAll('.delete-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const index = parseInt(e.target.dataset.index);
@@ -179,9 +176,9 @@ function renderView() {
 // Subject selection view
 function renderSubjectSelect() {
   const subjects = getUniqueSubjects();
-  
+
   const isTopicMode = testMode === 'topicSelect' || (testMode === 'subjectSelect' && selectedSubject !== '');
-  
+
   app.innerHTML = `
     <div class="subject-select">
       <h2>${isTopicMode ? 'Select Subject for Topic-wise Test' : 'Select Subject'}</h2>
@@ -213,7 +210,7 @@ function renderSubjectSelect() {
       }
     });
   });
-  
+
   document.getElementById('backToView')?.addEventListener('click', () => {
     testMode = 'view';
     selectedSubject = '';
@@ -224,7 +221,7 @@ function renderSubjectSelect() {
 // Topic selection view
 function renderTopicSelect() {
   const categories = getUniqueCategories(selectedSubject);
-  
+
   app.innerHTML = `
     <div class="topic-select">
       <h2>Select Topic for ${selectedSubject}</h2>
@@ -250,13 +247,13 @@ function renderTopicSelect() {
       startFilteredTest();
     });
   });
-  
+
   document.getElementById('backToSubjectSelect')?.addEventListener('click', () => {
     testMode = 'subjectSelect';
     selectedCategory = '';
     render();
   });
-  
+
   document.getElementById('backToView')?.addEventListener('click', () => {
     testMode = 'view';
     selectedSubject = '';
@@ -294,7 +291,7 @@ function startFilteredTest() {
 function renderTest() {
   // Use filtered questions if in subject/topic mode, otherwise use all questions
   const testQuestions = filteredQuestions.length > 0 ? filteredQuestions : questions;
-  
+
   if (testQuestions.length === 0) {
     app.innerHTML = `
       <div class="no-questions">
@@ -319,12 +316,12 @@ function renderTest() {
   }
 
   const question = testQuestions[currentQuestionIndex];
-  
+
   app.innerHTML = `
     <div class="test-header">
       <h2>Question ${currentQuestionIndex + 1} of ${testQuestions.length}</h2>
-      ${filteredQuestions.length > 0 ? 
-        `<p>${selectedSubject}${selectedCategory ? ` - ${selectedCategory}` : ''}</p>` : 
+      ${filteredQuestions.length > 0 ?
+        `<p>${selectedSubject}${selectedCategory ? ` - ${selectedCategory}` : ''}</p>` :
         `<p>Full Test</p>`}
       <progress value="${currentQuestionIndex}" max="${testQuestions.length}"></progress>
     </div>
@@ -333,7 +330,7 @@ function renderTest() {
       <div class="options">
         ${question.options.map((option, i) => `
           <div class="option">
-            <input type="radio" id="option${i}" name="answer" value="${i}" 
+            <input type="radio" id="option${i}" name="answer" value="${i}"
               ${userAnswers[currentQuestionIndex] === i ? 'checked' : ''}>
             <label for="option${i}">${String.fromCharCode(65 + i)}. ${option}</label>
           </div>
@@ -352,21 +349,21 @@ function renderTest() {
       userAnswers[currentQuestionIndex] = parseInt(e.target.value);
     });
   });
-  
+
   document.getElementById('prevQuestion')?.addEventListener('click', () => {
     if (currentQuestionIndex > 0) {
       currentQuestionIndex--;
       render();
     }
   });
-  
+
   document.getElementById('nextQuestion')?.addEventListener('click', () => {
     // Save current answer if any
     const selected = document.querySelector('input[name="answer"]:checked');
     if (selected) {
       userAnswers[currentQuestionIndex] = parseInt(selected.value);
     }
-    
+
     if (currentQuestionIndex < testQuestions.length - 1) {
       currentQuestionIndex++;
       render();
@@ -380,21 +377,21 @@ function renderTest() {
 function showResults() {
   // Use filtered questions if in subject/topic mode, otherwise use all questions
   const testQuestions = filteredQuestions.length > 0 ? filteredQuestions : questions;
-  
+
   const correctAnswers = userAnswers.reduce((count, answer, index) => {
     return answer === testQuestions[index].correctAnswer ? count + 1 : count;
   }, 0);
-  
+
   const percentage = Math.round((correctAnswers / testQuestions.length) * 100);
-  
+
   app.innerHTML = `
     <div class="results">
       <h2>Test Results</h2>
       <div class="score">
         <h3>You scored ${correctAnswers} out of ${testQuestions.length}</h3>
         <p>Percentage: ${percentage}%</p>
-        ${filteredQuestions.length > 0 ? 
-          `<p>Test Type: ${selectedSubject}${selectedCategory ? ` - ${selectedCategory}` : ''}</p>` : 
+        ${filteredQuestions.length > 0 ?
+          `<p>Test Type: ${selectedSubject}${selectedCategory ? ` - ${selectedCategory}` : ''}</p>` :
           `<p>Test Type: Full Test</p>`}
       </div>
       <div class="answers-review">
@@ -411,7 +408,7 @@ function showResults() {
       <button id="backToView">Back to View</button>
     </div>
   `;
-  
+
   document.getElementById('restartTest')?.addEventListener('click', () => {
     if (filteredQuestions.length > 0) {
       startFilteredTest();
@@ -419,7 +416,7 @@ function showResults() {
       startTest();
     }
   });
-  
+
   document.getElementById('backToView')?.addEventListener('click', () => {
     testMode = 'view';
     currentQuestionIndex = 0;
@@ -491,14 +488,14 @@ function renderEdit() {
     testMode = 'view';
     render();
   });
-  
+
   document.querySelectorAll('.save-question').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const index = parseInt(e.target.dataset.index);
       saveQuestion(index);
     });
   });
-  
+
   document.querySelectorAll('.cancel-edit').forEach(btn => {
     btn.addEventListener('click', () => {
       testMode = 'view';
@@ -528,7 +525,7 @@ function addQuestion() {
     difficulty: "medium",
     subject: "general"
   };
-  
+
   questions.push(newQuestion);
   saveQuestions();
   testMode = 'edit';
@@ -544,28 +541,28 @@ function editQuestion(index) {
 // Save a specific question
 function saveQuestion(index) {
   const card = document.querySelector(`.question-edit-card[data-index="${index}"]`);
-  
+
   if (card) {
     // Update question text
     const questionText = card.querySelector('.question-text').value;
     questions[index].question = questionText;
-    
+
     // Update options
     const optionInputs = card.querySelectorAll('.option-text');
     questions[index].options = Array.from(optionInputs).map(input => input.value);
-    
+
     // Update correct answer
     const correctAnswer = parseInt(card.querySelector('.correct-answer').value);
     questions[index].correctAnswer = correctAnswer;
-    
+
     // Update metadata
     questions[index].category = card.querySelector('.category').value;
     questions[index].difficulty = card.querySelector('.difficulty').value;
     questions[index].subject = card.querySelector('.subject').value;
-    
+
     saveQuestions();
   }
-  
+
   testMode = 'view';
   render();
 }
@@ -583,9 +580,9 @@ function deleteQuestion(index) {
 function exportQuestions() {
   const dataStr = JSON.stringify(questions, null, 2);
   const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-  
+
   const exportFileDefaultName = 'mcq-questions.json';
-  
+
   const linkElement = document.createElement('a');
   linkElement.setAttribute('href', dataUri);
   linkElement.setAttribute('download', exportFileDefaultName);
@@ -596,7 +593,7 @@ function exportQuestions() {
 function importQuestions(event) {
   const file = event.target.files[0];
   if (!file) return;
-  
+
   const reader = new FileReader();
   reader.onload = function(e) {
     try {
@@ -604,7 +601,7 @@ function importQuestions(event) {
       if (Array.isArray(importedQuestions)) {
         // Ask user if they want to append or replace
         const action = confirm(`Found ${importedQuestions.length} questions. Click OK to append to existing questions, or Cancel to replace all existing questions.`);
-        
+
         if (action) {
           // Append
           questions = questions.concat(importedQuestions);
@@ -612,7 +609,7 @@ function importQuestions(event) {
           // Replace
           questions = importedQuestions;
         }
-        
+
         saveQuestions();
         render();
         alert('Questions imported successfully!');
