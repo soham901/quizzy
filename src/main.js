@@ -54,6 +54,15 @@ function saveQuestions() {
   localStorage.setItem('mcqQuestions', JSON.stringify(questions));
 }
 
+// Clear all questions from localStorage
+function clearDatabase() {
+  if (confirm('Are you sure you want to clear all questions? This action cannot be undone.')) {
+    questions = [];
+    localStorage.removeItem('mcqQuestions');
+    render();
+  }
+}
+
 // Render the app based on current mode
 function render() {
   switch(testMode) {
@@ -98,6 +107,7 @@ function renderView() {
       <button id="exportQuestions">Export Questions</button>
       <input type="file" id="importQuestions" accept=".json" style="display: none;">
       <button id="importButton">Import Questions</button>
+      <button id="clearDatabase">Clear Database</button>
     </div>
     <div class="stats">
       <p>Total Questions: ${questions.length}</p>
@@ -148,6 +158,7 @@ function renderView() {
     document.getElementById('importQuestions').click();
   });
   document.getElementById('importQuestions')?.addEventListener('change', importQuestions);
+  document.getElementById('clearDatabase')?.addEventListener('click', clearDatabase);
   
   // Add event listeners for edit and delete buttons
   document.querySelectorAll('.edit-btn').forEach(btn => {
@@ -169,9 +180,11 @@ function renderView() {
 function renderSubjectSelect() {
   const subjects = getUniqueSubjects();
   
+  const isTopicMode = testMode === 'topicSelect' || (testMode === 'subjectSelect' && selectedSubject !== '');
+  
   app.innerHTML = `
     <div class="subject-select">
-      <h2>Select Subject</h2>
+      <h2>${isTopicMode ? 'Select Subject for Topic-wise Test' : 'Select Subject'}</h2>
       <div class="subjects-list">
         ${subjects.map(subject => `
           <div class="subject-card">
@@ -189,20 +202,21 @@ function renderSubjectSelect() {
   document.querySelectorAll('.select-subject').forEach(btn => {
     btn.addEventListener('click', (e) => {
       selectedSubject = e.target.dataset.subject;
-      if (testMode === 'subjectSelect') {
-        // For subject-wise test
-        filteredQuestions = questions.filter(q => q.subject === selectedSubject);
-        startFilteredTest();
-      } else {
+      if (!document.getElementById('startTopicTest')) {
         // For topic-wise test, go to topic selection
         testMode = 'topicSelect';
         render();
+      } else {
+        // For subject-wise test
+        filteredQuestions = questions.filter(q => q.subject === selectedSubject);
+        startFilteredTest();
       }
     });
   });
   
   document.getElementById('backToView')?.addEventListener('click', () => {
     testMode = 'view';
+    selectedSubject = '';
     render();
   });
 }
@@ -239,11 +253,14 @@ function renderTopicSelect() {
   
   document.getElementById('backToSubjectSelect')?.addEventListener('click', () => {
     testMode = 'subjectSelect';
+    selectedCategory = '';
     render();
   });
   
   document.getElementById('backToView')?.addEventListener('click', () => {
     testMode = 'view';
+    selectedSubject = '';
+    selectedCategory = '';
     render();
   });
 }
@@ -260,6 +277,8 @@ function startFilteredTest() {
     `;
     document.getElementById('backToView')?.addEventListener('click', () => {
       testMode = 'view';
+      selectedSubject = '';
+      selectedCategory = '';
       render();
     });
     return;
@@ -287,6 +306,8 @@ function renderTest() {
     document.getElementById('backToView')?.addEventListener('click', () => {
       testMode = 'view';
       filteredQuestions = [];
+      selectedSubject = '';
+      selectedCategory = '';
       render();
     });
     return;

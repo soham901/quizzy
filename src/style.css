@@ -39,6 +39,17 @@ body {
   min-width: 120px;
 }
 
+.actions button.danger-btn {
+  background-color: var(--incorrect-color);
+  color: white;
+  border: 1px solid var(--incorrect-color);
+}
+
+.actions button.danger-btn:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+}
+
 .stats {
   margin-bottom: 1rem;
   padding: 1rem;
@@ -255,24 +266,24 @@ body {
   .actions {
     flex-direction: column;
   }
-  
+
   .question-meta {
     flex-direction: column;
   }
-  
+
   .form-row {
     flex-direction: column;
   }
-  
+
   .test-actions {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .test-actions button {
     width: 100%;
   }
-  
+
   .subjects-list,
   .topics-list {
     grid-template-columns: 1fr;
