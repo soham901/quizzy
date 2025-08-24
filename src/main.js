@@ -338,6 +338,7 @@ function renderTest() {
       </div>
       <div class="test-actions">
         ${currentQuestionIndex > 0 ? '<button id="prevQuestion">Previous</button>' : ''}
+        <button id="checkAnswer">Check Answer</button>
         <button id="nextQuestion">${currentQuestionIndex === testQuestions.length - 1 ? 'Finish' : 'Next'}</button>
       </div>
     </div>
@@ -347,6 +348,14 @@ function renderTest() {
   document.querySelectorAll('input[name="answer"]').forEach(input => {
     input.addEventListener('change', (e) => {
       userAnswers[currentQuestionIndex] = parseInt(e.target.value);
+
+      // Remove selected class from all options
+      document.querySelectorAll('.option').forEach(option => {
+        option.classList.remove('selected');
+      });
+
+      // Add selected class to the chosen option
+      e.target.closest('.option').classList.add('selected');
     });
   });
 
@@ -355,6 +364,42 @@ function renderTest() {
       currentQuestionIndex--;
       render();
     }
+  });
+
+  document.getElementById('checkAnswer')?.addEventListener('click', () => {
+    const selected = document.querySelector('input[name="answer"]:checked');
+    if (!selected) {
+      alert('Please select an answer first!');
+      return;
+    }
+
+    const userAnswer = parseInt(selected.value);
+    const correctAnswer = question.correctAnswer;
+
+    // Remove all existing classes
+    document.querySelectorAll('.option').forEach(option => {
+      option.classList.remove('selected', 'correct-feedback', 'incorrect-feedback', 'correct-answer-highlight');
+    });
+
+    // Add feedback classes
+    const selectedOption = selected.closest('.option');
+    if (userAnswer === correctAnswer) {
+      selectedOption.classList.add('correct-feedback');
+    } else {
+      selectedOption.classList.add('incorrect-feedback');
+      // Highlight the correct answer
+      const correctOption = document.querySelector(`#option${correctAnswer}`).closest('.option');
+      correctOption.classList.add('correct-answer-highlight');
+    }
+
+    // Disable radio buttons after checking
+    document.querySelectorAll('input[name="answer"]').forEach(input => {
+      input.disabled = true;
+    });
+
+    // Update the button text
+    document.getElementById('checkAnswer').textContent = 'Answer Checked';
+    document.getElementById('checkAnswer').disabled = true;
   });
 
   document.getElementById('nextQuestion')?.addEventListener('click', () => {

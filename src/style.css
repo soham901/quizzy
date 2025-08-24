@@ -121,6 +121,31 @@ body {
   margin-right: 0.5rem;
 }
 
+.option.selected {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-color: var(--primary-color);
+  border-width: 2px;
+}
+
+.option.correct-feedback {
+  background-color: rgba(40, 167, 69, 0.2);
+  border-color: var(--correct-color);
+  border-width: 2px;
+}
+
+.option.incorrect-feedback {
+  background-color: rgba(220, 53, 69, 0.2);
+  border-color: var(--incorrect-color);
+  border-width: 2px;
+}
+
+.option.correct-answer-highlight {
+  background-color: rgba(40, 167, 69, 0.3);
+  border-color: var(--correct-color);
+  border-width: 3px;
+  font-weight: bold;
+}
+
 .test-actions {
   display: flex;
   justify-content: space-between;
