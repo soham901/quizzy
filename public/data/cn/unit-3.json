@@ -1,0 +1,712 @@
+[
+  {
+    "question": "What is the primary function of the Transport Layer as described in the sources?",
+    "options": [
+      "Routing packets between different networks",
+      "Providing logical communication between application processes running on different hosts",
+      "Managing physical connections and data link frames",
+      "Translating domain names to IP addresses"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "Transport protocols primarily operate in which part of the network architecture?",
+    "options": ["Routers", "Switches", "End systems", "Middleboxes"],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "In the OSI model, the Transport Layer is located at which layer?",
+    "options": ["Layer 1", "Layer 2", "Layer 3", "Layer 4"],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "In the TCP/IP model, the Transport Layer is often referred to as which layer?",
+    "options": [
+      "Layer 1 (Network Access)",
+      "Layer 2 (Internet)",
+      "Layer 3 (Transport)",
+      "Layer 4 (Application)"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "How does the transport layer identify individual applications (processes) on a host?",
+    "options": [
+      "IP addresses",
+      "MAC addresses",
+      "Port numbers",
+      "Protocol types"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What information does the transport layer use to deliver received segments to the correct socket during demultiplexing?",
+    "options": [
+      "MAC addresses",
+      "IP addresses",
+      "Header information",
+      "Physical layer signals"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What does the sender add during multiplexing to help with demultiplexing at the receiver?",
+    "options": [
+      "Application data",
+      "Network layer header",
+      "Transport header",
+      "Physical layer preamble"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What combination of information does a host PC use to direct a transport-layer segment to the appropriate socket?",
+    "options": [
+      "Source MAC address and destination MAC address",
+      "Source IP address and destination IP address",
+      "Source port number and destination port number",
+      "IP addresses and port numbers"
+    ],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "In connectionless demultiplexing (UDP), to which socket is a received UDP segment directed?",
+    "options": [
+      "The socket associated with the source IP address",
+      "The socket associated with the source port number",
+      "The socket with the matching destination port number",
+      "The socket with the matching source IP and port number"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What happens to UDP segments with the same destination port number but different source IP addresses and/or source port numbers at the destination host?",
+    "options": [
+      "They are discarded",
+      "They are directed to different sockets",
+      "They are directed to the same socket",
+      "They cause a connection error"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "Which of the following uniquely identifies a TCP socket for connection-oriented demultiplexing?",
+    "options": [
+      "Destination IP address and destination port number",
+      "Source IP address and source port number",
+      "A 4-tuple (Source IP, Source Port, Destination IP, Destination Port)",
+      "Only the destination port number"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "How do web servers typically handle TCP sockets for different connecting clients?",
+    "options": [
+      "All clients share a single socket",
+      "They assign a unique socket to each connecting client",
+      "They use UDP for web traffic",
+      "Sockets are only created for persistent HTTP connections"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "Which of the following is a characteristic of UDP (User Datagram Protocol)?",
+    "options": [
+      "It is connection-oriented",
+      "It guarantees reliable data delivery",
+      "It performs a 3-way handshake",
+      "It is a connectionless protocol"
+    ],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "Which type of application is most likely to use UDP due to its loss-tolerant and rate-sensitive nature?",
+    "options": [
+      "File transfer (FTP)",
+      "Email (SMTP)",
+      "Web browsing (HTTP)",
+      "Online Gaming"
+    ],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "Which field is included in the UDP segment header?",
+    "options": [
+      "Sequence number",
+      "Acknowledgement number",
+      "Length",
+      "Urgent data pointer"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What happens if a UDP packet is lost or corrupted during transmission?",
+    "options": [
+      "The sender retransmits it automatically",
+      "The receiver requests retransmission",
+      "It is not retransmitted by UDP",
+      "A connection reset is initiated"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What is the primary purpose of the checksum in a UDP segment?",
+    "options": [
+      "To ensure ordered delivery",
+      "To detect errors in the transmitted segment",
+      "To establish a connection",
+      "To control the flow of data"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "How does a UDP receiver determine if a segment has been corrupted?",
+    "options": [
+      "By checking the sequence number",
+      "By comparing the computed checksum of the received segment with the checksum field value",
+      "By waiting for an ACK",
+      "By verifying the source port number"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "In the checksum calculation, what must be done with a carryout from the most significant bit when adding numbers?",
+    "options": [
+      "It is discarded",
+      "It is added to the next higher order word",
+      "It is added to the result (wraparound)",
+      "It indicates a transmission error"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "In the Reliable Data Transfer (rdt) model, which function is called by rdt to transfer a packet over an unreliable channel to the receiver?",
+    "options": ["rdt_send()", "udt_send()", "rdt_rcv()", "deliver_data()"],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What mathematical model is used to specify the sender and receiver behavior in reliable data transfer protocols?",
+    "options": [
+      "Queueing theory",
+      "Petri nets",
+      "Finite State Machines (FSM)",
+      "Graph theory"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "rdt 2.0 to handle channels with bit errors, compared to rdt 1.0?",
+    "options": [
+      "Flow control",
+      "Congestion control",
+      "Error detection and retransmission",
+      "Pipelining"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "RDT 2.0 is also known by what common name?",
+    "options": [
+      "Stop-and-Wait Protocol",
+      "It closes the connection",
+      "It waits for a timeout"
+    ],
+    "correctAnswer": 0,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What is a problem that rdt 2.0 does not address, leading to the development of rdt 2.1?",
+    "options": ["Packet loss", "Channel errors", "Corrupted ACKs/NAKs"],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What is the main difference in feedback mechanisms between rdt 2.1 and rdt 2.2?",
+    "options": [
+      "rdt 2.2 uses only NAKs",
+      "rdt 2.2 uses only ACKs and specifies the sequence number of the ACKed packet",
+      "rdt 2.2 introduces selective repeat",
+      "rdt 2.2 has no feedback"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "In rdt 2.2, if the sender receives a duplicate ACK, what action does it take?",
+    "options": [
+      "It sends the next packet",
+      "It retransmits the current packet",
+      "It closes the connection",
+      "It ignores the duplicate ACK"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What new type of channel imperfection does rdt 3.0 address that previous rdt versions did not?",
+    "options": [
+      "Bit errors in data",
+      "Corrupted acknowledgements",
+      "Packet loss",
+      "Out-of-order delivery"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "To handle packet loss in rdt 3.0, what mechanism does the sender use?",
+    "options": [
+      "Sending NAKs",
+      "Requesting a checksum",
+      "A countdown timer",
+      "Increasing the window size"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "rdt 3.0 is also known as what specific protocol?",
+    "options": [
+      "Go-back-N protocol",
+      "Selective Repeat protocol",
+      "Alternating-bit protocol",
+      "Stop-and-wait protocol"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What is a characteristic feature of a pipelined protocol?",
+    "options": [
+      "It sends one packet at a time and waits for an ACK",
+      "It requires immediate responses for each request",
+      "Multiple requests are sent to a single socket without waiting for individual responses",
+      "It only works over perfectly reliable channels"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "In the Go-back-N protocol, what kind of acknowledgment does the receiver send?",
+    "options": [
+      "Individual ACK for each packet",
+      "Negative Acknowledgements (NAKs)",
+      "Selective ACKs",
+      "Cumulative ACK"
+    ],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "When the timer for the oldest unacknowledged packet expires in Go-back-N, what does the sender retransmit?",
+    "options": [
+      "Only the oldest unacknowledged packet",
+      "All unacknowledged packets",
+      "Only the last sent packet",
+      "Only packets within the receiver's advertised window"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "How does a Go-back-N receiver handle an out-of-order frame (a frame that does not have the exact sequence number it expects)?",
+    "options": [
+      "It buffers the frame and waits for the missing ones",
+      "It immediately sends an NAK for the missing frames",
+      "It discards the frame",
+      "It requests the sender to retransmit only that frame"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "The Go-back-N protocol is also known by what other name?",
+    "options": [
+      "Alternating-bit protocol",
+      "Stop-and-wait protocol",
+      "Selective Reject protocol",
+      "Sliding window protocol"
+    ],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "In the Selective Repeat protocol, what does the sender retransmit when a timer for an unacknowledged packet expires?",
+    "options": [
+      "All unacknowledged packets",
+      "Only that specific unacknowledged packet",
+      "Only the packets after the expired one",
+      "The entire window of packets"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "How does the Selective Repeat receiver acknowledge packets?",
+    "options": [
+      "By sending a single cumulative ACK",
+      "By sending a NAK for lost packets",
+      "By sending an individual ACK for each correctly received packet",
+      "By sending an ACK only after receiving all packets in order"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What is a requirement for the receiver in the Selective Repeat protocol regarding out-of-order packets?",
+    "options": [
+      "It must discard all out-of-order packets",
+      "It must immediately request retransmission for all missing packets",
+      "It must be able to accept packets out of order and buffer them",
+      "It can only accept packets in strict sequential order"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What is the main purpose of TCP (Transmission Control Protocol)?",
+    "options": [
+      "To manage network routing tables",
+      "To provide logical communication between processes",
+      "To ensure reliable, ordered, and error-checked delivery of data",
+      "To translate domain names to IP addresses"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "Which of the following is a key feature of TCP?",
+    "options": [
+      "Connectionless communication",
+      "Discarding out-of-order segments",
+      "No error checking",
+      "Connection-oriented"
+    ],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "How does TCP handle data segments that arrive out of order at the receiver?",
+    "options": [
+      "It discards them",
+      "It requests immediate retransmission",
+      "It rearranges them into the correct order",
+      "It forwards them directly to the application layer"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What is the first step in the TCP 3-way handshake process initiated by the client?",
+    "options": ["ACK", "FIN", "SYN", "SYN-ACK"],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What does the sequence number field in a TCP segment represent?",
+    "options": [
+      "The number of segments sent so far",
+      "The byte-stream number of the last byte in the segment",
+      "The byte-stream number of the first byte in the segment",
+      "The order of the segment in the overall transmission"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What does the acknowledgment number field in a TCP segment indicate?",
+    "options": [
+      "The sequence number of the last byte received",
+      "The sequence number of the next byte the receiver is expecting",
+      "The total number of bytes received",
+      "The number of ACKs sent so far"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What is the purpose of the 16-bit receive window field in the TCP segment header?",
+    "options": [
+      "To indicate the sender's current window size",
+      "To specify the maximum segment size",
+      "To control flow by indicating the number of bytes the receiver is willing to accept",
+      "To acknowledge received data"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "Which TCP flag is set in the first packet sent from each end during connection establishment to synchronize sequence numbers?",
+    "options": ["ACK", "PSH", "SYN", "FIN"],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What does the FIN flag in a TCP segment indicate?",
+    "options": [
+      "Acknowledgment is valid",
+      "Push data immediately",
+      "Reset the connection",
+      "No more data from the sender"
+    ],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What is the primary goal of flow control in the Transport Layer?",
+    "options": [
+      "To prevent network congestion",
+      "To ensure data integrity",
+      "To prevent a fast sender from overwhelming a slow receiver",
+      "To establish a connection"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "How does a receiver typically communicate its current buffer space for flow control purposes?",
+    "options": [
+      "By sending NAKs",
+      "By advertising a receiver window (rwnd) with each acknowledgment",
+      "By resetting the connection",
+      "By ignoring incoming data"
+    ],
+    "correctAnswer": 1,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What situation does congestion control aim to address?",
+    "options": [
+      "A slow sender",
+      "A slow receiver",
+      "Too many sources sending too much data too fast for the network to handle",
+      "Errors in data transmission"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "In a congestion scenario with finite buffers and sender retransmission of timed-out packets, how does transport-layer input (λ'in) compare to application-layer input (λin)?",
+    "options": [
+      "λ'in is always less than λin",
+      "λ'in is always equal to λin",
+      "λ'in is greater than or equal to λin",
+      "λ'in is unrelated to λin"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "In a realistic congestion scenario, what can happen if the sender times out prematurely due to full buffers?",
+    "options": [
+      "The connection is immediately closed",
+      "The sender waits indefinitely for an ACK",
+      "The sender retransmits, potentially sending duplicate packets that are both delivered",
+      "The receiver discards all subsequent packets"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What approach does TCP primarily use for congestion control?",
+    "options": [
+      "Network-assisted congestion control with explicit feedback from routers",
+      "Explicit rate signaling from the network",
+      "End-to-end congestion control, using inferred loss and delay",
+      "Pre-set fixed window sizes"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "TCP Slow Start is an algorithm that primarily aims to balance which two factors?",
+    "options": [
+      "Source IP address and destination IP address",
+      "Sender's maximum segment size and receiver's buffer size",
+      "Congestion window (sender) and receiver window (receiver)",
+      "Network latency and bandwidth"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "How does TCP Slow Start gradually increase the amount of data transmitted?",
+    "options": [
+      "By halving the congestion window with each ACK",
+      "By setting a fixed maximum window size from the start",
+      "By rapidly increasing the window size to maximum capacity",
+      "By increasing the next packet's window size after receiving an acknowledgment"
+    ],
+    "correctAnswer": 3,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "What is the fundamental concept behind Remote Procedure Call (RPC)?",
+    "options": [
+      "A protocol for file transfer",
+      "A method for directly accessing hardware on a remote machine",
+      "A communication method to execute a procedure on another computer as if it were local",
+      "A network routing algorithm"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Easy",
+    "subject": "CN"
+  },
+  {
+    "question": "What is the relationship between RPC and transport protocols?",
+    "options": [
+      "RPC is a type of transport protocol",
+      "RPC replaces transport protocols",
+      "RPC uses transport protocols for communication",
+      "Transport protocols are built on top of RPC"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  },
+  {
+    "question": "For which type of RPC scenario is UDP often preferred?",
+    "options": [
+      "Stateful and reliable RPC",
+      "Highly secure RPC",
+      "Stateless and fast RPC",
+      "RPC requiring guaranteed delivery"
+    ],
+    "correctAnswer": 2,
+    "category": "unit-3",
+    "difficulty": "Medium",
+    "subject": "CN"
+  }
+]
