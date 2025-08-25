@@ -1,6 +1,9 @@
 import './style.css';
 import './pwa.js';
 
+// Capacitor initialization
+import { Capacitor } from '@capacitor/core';
+
 // DOM Elements
 const app = document.getElementById('app');
 

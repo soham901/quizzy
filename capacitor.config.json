@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.mcqtest",
+  "appName": "MCQ Test App",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

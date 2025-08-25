@@ -31,6 +31,10 @@
         <!-- App content will be loaded here -->
       </div>
     </main>
+    <script type="module">
+      import { defineCustomElements } from '@ionic/pwa-elements/loader';
+      defineCustomElements(window);
+    </script>
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/pwa.js"></script>
   </body>

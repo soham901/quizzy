@@ -10,6 +10,7 @@ A simple Multiple Choice Question (MCQ) test-taking application built with Pico 
 - Import/export questions as JSON
 - Dark theme support using Pico CSS
 - Responsive design for all devices
+- Native mobile apps for Android and iOS
 
 ## Installation
 
@@ -41,6 +42,32 @@ To preview the production build:
 ```bash
 npm run preview
 ```
+
+## Native Mobile Apps
+
+This project includes native mobile apps for Android and iOS built with Capacitor. See [NATIVE.md](NATIVE.md) for detailed instructions on building and running the native apps.
+
+### Quick Start for Native Apps
+
+1. Build the web app:
+   ```bash
+   npm run build
+   ```
+
+2. Sync with Capacitor:
+   ```bash
+   npx cap sync
+   ```
+
+3. Run on Android:
+   ```bash
+   npm run cap:android
+   ```
+
+4. Run on iOS (macOS only):
+   ```bash
+   npm run cap:ios
+   ```
 
 ## Data Structure
 
@@ -82,6 +109,7 @@ Each question follows this structure:
 
 - [Vite](https://vitejs.dev/) - Build tool
 - [Pico CSS](https://picocss.com/) - Minimal CSS framework
+- [Capacitor](https://capacitorjs.com/) - Native runtime for mobile apps
 - localStorage - For data persistence
 
 ## License
