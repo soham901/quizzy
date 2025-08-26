@@ -1,0 +1,11 @@
+Generate maximum number of MCQs out of this in following format:
+[
+    {
+        "question": "",
+        "options": ["", "", "", ""],
+        "correctAnswer": 0,
+        "category": "unit-2",
+        "difficulty": "Medium" | "Easy" | "Hard",
+        "subject": "DM"
+    }
+]

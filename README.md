@@ -1,4 +1,4 @@
-# Simple MCQ Test App
+# Quizzy
 
 A simple Multiple Choice Question (MCQ) test-taking application built with Pico CSS and Vite. This app allows you to create, edit, and take MCQ tests with localStorage persistence.
 

@@ -1,6 +1,6 @@
 {
-  "name": "MCQ Test App",
-  "short_name": "MCQ Test",
+  "name": "Quizzy",
+  "short_name": "Quizzy",
   "description": "A simple MCQ test-taking application",
   "start_url": "/",
   "display": "standalone",

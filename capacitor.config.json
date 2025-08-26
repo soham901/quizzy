@@ -1,6 +1,6 @@
 {
-  "appId": "com.example.mcqtest",
-  "appName": "MCQ Test App",
+  "appId": "com.example.quizzy",
+  "appName": "Quizzy",
   "webDir": "dist",
   "bundledWebRuntime": false
 }

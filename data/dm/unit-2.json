@@ -1,0 +1,483 @@
+[
+    {
+        "question": "What is the primary purpose of data pre-processing in data mining?",
+        "options": [
+            "To perform initial data analysis and visualization.",
+            "To transform raw data into an understandable and usable format.",
+            "To build machine learning models directly on raw data.",
+            "To generate reports from aggregated data."
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "Which of the following is NOT a characteristic of real-world data that necessitates pre-processing?",
+        "options": [
+            "Incomplete: Missing attribute values.",
+            "Noisy: Containing errors or outliers.",
+            "Consistent: Containing similar codes or names.",
+            "Inconsistent: Containing similarity in codes or names."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "According to the sources, what percentage of data mining tasks are typically dedicated to data preparation, cleaning, and transformation?",
+        "options": [
+            "10%",
+            "50%",
+            "90%",
+            "70%"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "Which of the following is a method for filling in missing values in a dataset?",
+        "options": [
+            "Ignoring the tuple.",
+            "Using a global constant.",
+            "Using the most probable value (e.g., with regression).",
+            "All of the above."
+        ],
+        "correctAnswer": 3,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "When is it usually appropriate to ignore a tuple (record/row) with missing values?",
+        "options": [
+            "When the dataset is very large.",
+            "When the class label is missing and the number of missing values is small.",
+            "When dealing with skewed data distributions.",
+            "When the missing value can be easily filled manually."
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "For a normal (symmetric) data distribution, which measure of central tendency is typically used to fill in missing values?",
+        "options": [
+            "Median",
+            "Mode",
+            "Mean",
+            "Standard Deviation"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "Which data smoothing technique involves replacing each value in a bin by the mean value of that bin?",
+        "options": [
+            "Regression",
+            "Outlier analysis",
+            "Smoothing by bin median",
+            "Smoothing by bin means"
+        ],
+        "correctAnswer": 3,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "If data is sorted and distributed into a specified number of buckets, and each value is then replaced by the bin's mean, median, or boundaries, which smoothing technique is being applied?",
+        "options": [
+            "Regression",
+            "Clustering",
+            "Binning",
+            "Outlier analysis"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "Consider the data: 4, 8, 9, 15, 21, 21, 24, 25, 26, 28, 29, 34. If partitioned into equal-depth bins of 4 values each, and smoothed by bin means, what would the values for Bin 1 be?",
+        "options": [
+            "4, 8, 9, 15",
+            "9, 9, 9, 9",
+            "23, 23, 23, 23",
+            "4, 4, 4, 15"
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Hard",
+        "subject": "DM"
+    },
+    {
+        "question": "Which type of regression involves finding the 'best' line to fit two attributes so that one can predict the other?",
+        "options": [
+            "Multiple linear regression",
+            "Polynomial regression",
+            "Linear regression",
+            "Logistic regression"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "How can outliers be detected using clustering methods?",
+        "options": [
+            "By replacing values with bin means.",
+            "By conforming data values to a function.",
+            "Values that fall outside of the set of clusters may be considered outliers.",
+            "By sorting data values into equal-width intervals."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "Which of these is NOT a method mentioned for correcting inconsistent data?",
+        "options": [
+            "Using domain knowledge or constraints.",
+            "Standardization and formatting.",
+            "Filling missing values with a global constant.",
+            "Duplicate detection and resolution."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "The entity identification problem in data integration refers to:",
+        "options": [
+            "How to assign unique IDs to new data entries.",
+            "How to match real-world entities from different data sources.",
+            "How to identify the most important attributes in a dataset.",
+            "How to identify outliers in integrated data."
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "If the correlation coefficient (rA,B) between two attributes A and B is greater than 0, what does it indicate?",
+        "options": [
+            "A and B are independent.",
+            "A and B are negatively correlated.",
+            "A and B are positively correlated.",
+            "A and B have no linear relationship."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "What is the range of values for the correlation coefficient (rA,B)?",
+        "options": [
+            "0 to +1",
+            "-1 to 0",
+            "-1 to +1",
+            "Any real number"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "The Chi-Square (χ²) test is primarily used to measure dependence between which type of variables?",
+        "options": [
+            "Continuous variables",
+            "Ordinal variables",
+            "Nominal (categorical) variables",
+            "Interval variables"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "In a Chi-Square test, if the calculated χ² value is greater than the critical value, what is the conclusion regarding the null hypothesis?",
+        "options": [
+            "Accept the null hypothesis.",
+            "Fail to reject the null hypothesis.",
+            "Reject the null hypothesis.",
+            "The variables are independent."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "Which of the following is NOT listed as a method for Data Transformation?",
+        "options": [
+            "Smoothing",
+            "Data Integration",
+            "Normalization",
+            "Discretization"
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "What is the purpose of Min-Max Normalization?",
+        "options": [
+            "To scale data to have a mean of zero and standard deviation of one.",
+            "To remove noise from data.",
+            "To transform continuous data into discrete intervals.",
+            "To scale data between 0 and 1 or within a specified range."
+        ],
+        "correctAnswer": 3,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "Given the formula for Min-Max Normalization V’ = (V - Min) / (Max - Min) * (NewMax - NewMin) + NewMin. If V=20, Min=16, Max=40, NewMax=1, and NewMin=0, what is the normalized value V'?",
+        "options": [
+            "0",
+            "0.16",
+            "0.58",
+            "1"
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Hard",
+        "subject": "DM"
+    },
+    {
+        "question": "Which normalization technique involves moving the decimal point of attribute values based on the maximum value in the attribute?",
+        "options": [
+            "Min-Max Normalization",
+            "Z-Score Normalization",
+            "Decimal Scaling",
+            "Log Transformation"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "What is another name for Z-Score Normalization?",
+        "options": [
+            "Min-Max Normalization",
+            "Zero-mean normalization",
+            "Decimal scaling",
+            "Data compression"
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "If a data point has a Z-score of -1.5, what does it indicate?",
+        "options": [
+            "The data point is 1.5 standard deviations above the mean.",
+            "The data point is 1.5 standard deviations below the mean.",
+            "The data point is exactly at the mean.",
+            "The data point is an outlier."
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "What is the main objective of data reduction techniques?",
+        "options": [
+            "To increase the volume of the dataset for more detailed analysis.",
+            "To obtain a reduced representation of the dataset that is smaller in volume while maintaining data integrity.",
+            "To introduce inconsistencies and complicate data management processes.",
+            "To always produce different analytical results compared to the original data."
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "Principal Components Analysis (PCA) is primarily used for which type of data reduction?",
+        "options": [
+            "Numerosity reduction",
+            "Data compression",
+            "Dimensionality reduction",
+            "Concept hierarchy climbing"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "Which of the following is NOT a benefit of using PCA?",
+        "options": [
+            "Reduces complexity in high-dimensional data.",
+            "Introduces redundancy while keeping essential information.",
+            "Facilitates data compression.",
+            "Speeds up machine learning models."
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "What is the first step in the Principal Components Analysis (PCA) process?",
+        "options": [
+            "Compute Covariance Matrix",
+            "Calculate Eigenvalues and Eigenvectors",
+            "Standardize the Data",
+            "Transform the original data"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "In PCA, what do eigenvalues indicate?",
+        "options": [
+            "The direction of principal components.",
+            "The amount of variance captured by each principal component.",
+            "The mean of the data for each feature.",
+            "The correlation between features."
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "Attribute subset selection aims to reduce data dimensionality by:",
+        "options": [
+            "Aggregating data into summaries.",
+            "Encoding data into a more compact form.",
+            "Selecting a relevant subset of attributes while discarding irrelevant or redundant ones.",
+            "Transforming continuous data into discrete intervals."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "Which attribute subset selection method starts with an empty set of attributes and adds the best of the remaining original attributes at each step?",
+        "options": [
+            "Stepwise backwards elimination",
+            "Stepwise forward selection",
+            "Decision tree induction",
+            "Combined forward selection and backward elimination"
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "In the context of decision tree induction for attribute subset selection, which attributes are assumed to be irrelevant?",
+        "options": [
+            "Attributes appearing in the tree's leaf nodes.",
+            "Attributes used as inner nodes in the tree.",
+            "All attributes not appearing in the tree.",
+            "Attributes with high correlation coefficients."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "Histograms are useful for data reduction because they provide a clear representation of:",
+        "options": [
+            "The exact values of individual data points.",
+            "The linear relationship between two attributes.",
+            "The distribution of a dataset, helping identify patterns and outliers.",
+            "The correlation coefficient between variables."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "Which data reduction technique involves selecting a subset of data from a larger dataset to represent the whole data, while preserving its important characteristics?",
+        "options": [
+            "Dimensionality reduction",
+            "Data compression",
+            "Sampling",
+            "Data transformation"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "In which sampling method is a data point, once selected, NOT returned to the dataset, meaning it cannot be selected more than once?",
+        "options": [
+            "Simple random sample with replacement (SRSWR)",
+            "Simple random sample without replacement (SRSWOR)",
+            "Cluster sample",
+            "Stratified sample"
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "What is the primary goal of Data Discretization?",
+        "options": [
+            "To remove noise from data.",
+            "To convert discrete data into continuous values.",
+            "To transform continuous or numerical data into discrete intervals or categories.",
+            "To scale data to fall within a smaller, specified range."
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    },
+    {
+        "question": "Which of the following is NOT listed as a technique for Data Discretization?",
+        "options": [
+            "Discretization by Binning",
+            "Discretization by Histogram Analysis",
+            "Discretization by Z-score Normalization",
+            "Discretization by Clustering"
+        ],
+        "correctAnswer": 2,
+        "category": "unit-2",
+        "difficulty": "Medium",
+        "subject": "DM"
+    },
+    {
+        "question": "What does a concept hierarchy in data mining represent?",
+        "options": [
+            "A flat list of all data attributes.",
+            "An arrangement of data into a tree-like structure, with each level representing a more general concept.",
+            "A method for data transformation into a single, aggregated value.",
+            "A technique to identify and smooth noisy data."
+        ],
+        "correctAnswer": 1,
+        "category": "unit-2",
+        "difficulty": "Easy",
+        "subject": "DM"
+    }
+]
