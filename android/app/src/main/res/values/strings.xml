@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">MCQ Test App</string>
-    <string name="title_activity_main">MCQ Test App</string>
-    <string name="package_name">com.example.mcqtest</string>
-    <string name="custom_url_scheme">com.example.mcqtest</string>
+    <string name="app_name">Quizzy</string>
+    <string name="title_activity_main">Quizzy</string>
+    <string name="package_name">com.example.quizzy</string>
+    <string name="custom_url_scheme">com.example.quizzy</string>
 </resources>

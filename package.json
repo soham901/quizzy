@@ -1,5 +1,5 @@
 {
-  "name": "simple-mcqs",
+  "name": "quizzy",
   "version": "1.0.0",
   "description": "A simple MCQ test-taking application",
   "main": "index.js",
