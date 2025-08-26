@@ -37,7 +37,9 @@ function loadSampleData() {
     // Load both JSON files when no initial data exists
     Promise.all([
       fetch('/data/cn/unit-2.json').then(response => response.json()),
-      fetch('/data/cn/unit-3.json').then(response => response.json())
+      fetch('/data/cn/unit-3.json').then(response => response.json()),
+      fetch('/data/dm/unit-2.json').then(response => response.json()),
+      fetch('/data/dm/unit-3.json').then(response => response.json()),
     ])
     .then(([unit2Data, unit3Data]) => {
       questions = questions.concat(unit2Data, unit3Data);
