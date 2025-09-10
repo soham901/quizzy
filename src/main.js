@@ -1,5 +1,14 @@
 import './style.css';
 import './pwa.js';
+import posthog from 'posthog-js';
+
+// Initialize PostHog analytics
+posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
+  api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+  defaults: '2025-05-24',
+  capture_exceptions: true,
+  debug: import.meta.env.MODE === 'development',
+});
 
 // Capacitor initialization
 import { Capacitor } from '@capacitor/core';

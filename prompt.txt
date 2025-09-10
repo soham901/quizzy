@@ -1,11 +1,17 @@
-Generate maximum number of MCQs out of this in following format:
+generate maximum mcqs out of this pdf in following format also have 30% mcqs from the web and 70% from the source, also have mcqs of nest CLI options:
 [
     {
         "question": "",
-        "options": ["", "", "", ""],
-        "correctAnswer": 0,
-        "category": "unit-2",
-        "difficulty": "Medium" | "Easy" | "Hard",
-        "subject": "DM"
-    }
+        "options": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "correctAnswer": 1,
+        "category": "nestjs",
+        "difficulty": "Easy",
+        "subject": "awt"
+    },
+    ...
 ]
