@@ -1,4 +1,5 @@
-generate maximum mcqs out of this pdf in following format also have 30% mcqs from the web and 70% from the source, also have mcqs of nest CLI options:
+Generate maximum MCQs from this PDF in the following JSON format:
+
 [
     {
         "question": "",
@@ -8,10 +9,19 @@ generate maximum mcqs out of this pdf in following format also have 30% mcqs fro
             "",
             ""
         ],
-        "correctAnswer": 1,
-        "category": "nestjs",
+        "correctAnswer": 0,
+        "category": "topic-category",
         "difficulty": "Easy",
-        "subject": "awt"
+        "subject": "subject-name"
     },
     ...
 ]
+
+Requirements:
+1. Generate at least 30 high-quality MCQs
+2. Ensure questions cover all important concepts from the PDF
+3. Distribute difficulty levels: 40% Easy, 40% Medium, 20% Hard
+4. Include questions that require both factual recall and conceptual understanding
+5. Make sure all options are plausible but only one is correct
+6. Ensure correctAnswer index matches the correct option (0-3)
+7. Use appropriate category and subject names

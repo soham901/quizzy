@@ -25,6 +25,7 @@ A simple Multiple Choice Question (MCQ) test-taking application built with Pico 
 ### Development
 
 To start the development server:
+
 ```bash
 npm run dev
 ```
@@ -32,6 +33,7 @@ npm run dev
 ### Building
 
 To build the project for production:
+
 ```bash
 npm run build
 ```
@@ -39,6 +41,7 @@ npm run build
 ### Preview
 
 To preview the production build:
+
 ```bash
 npm run preview
 ```
@@ -50,16 +53,19 @@ This project includes native mobile apps for Android and iOS built with Capacito
 ### Quick Start for Native Apps
 
 1. Build the web app:
+
    ```bash
    npm run build
    ```
 
 2. Sync with Capacitor:
+
    ```bash
    npx cap sync
    ```
 
 3. Run on Android:
+
    ```bash
    npm run cap:android
    ```
@@ -72,6 +78,7 @@ This project includes native mobile apps for Android and iOS built with Capacito
 ## Data Structure
 
 Each question follows this structure:
+
 ```json
 {
   "question": "Question text",
@@ -86,22 +93,26 @@ Each question follows this structure:
 ## Functionality
 
 ### View Mode
+
 - See all questions with their options and metadata
 - Start different types of tests
 - Edit, add, or delete questions
 - Import/export questions
 
 ### Test Modes
+
 1. **Full Test**: All questions in random order
 2. **Subject-wise Test**: Questions filtered by subject
 3. **Topic-wise Test**: Questions filtered by subject and topic
 
 ### Editing
+
 - Add new questions
 - Edit existing questions
 - Delete questions
 
 ### Import/Export
+
 - Export all questions as JSON
 - Import questions from JSON file (choose to append or replace)
 

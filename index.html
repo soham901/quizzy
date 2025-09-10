@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,23 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#4a90e2" />
     <meta name="description" content="A simple MCQ test-taking application" />
-    
+
     <!-- PWA meta tags -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Quizzy">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Quizzy" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
     <title>Quizzy</title>
-    
+
     <!-- Manifest -->
-    <link rel="manifest" href="/manifest.json">
-    
+    <link rel="manifest" href="/manifest.json" />
+
     <!-- Icons -->
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    
-    <link rel="stylesheet" href="/node_modules/@picocss/pico/css/pico.min.css">
-    <link rel="stylesheet" href="/src/style.css">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
+    <link
+      rel="stylesheet"
+      href="/node_modules/@picocss/pico/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <main class="container">
@@ -32,7 +35,7 @@
       </div>
     </main>
     <script type="module">
-      import { defineCustomElements } from '@ionic/pwa-elements/loader';
+      import { defineCustomElements } from "@ionic/pwa-elements/loader";
       defineCustomElements(window);
     </script>
     <script type="module" src="/src/main.js"></script>
