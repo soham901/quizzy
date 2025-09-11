@@ -134,14 +134,6 @@ function addSampleData() {
       subject: "javascript",
     },
     {
-      question: "What is the correct HTML element for inserting a line break?",
-      options: ["<lb>", "<break>", "<br>", "<newline>"],
-      correctAnswer: 2,
-      category: "web-development",
-      difficulty: "Easy",
-      subject: "html",
-    },
-    {
       question: "In CSS, what does the 'font-size' property do?",
       options: [
         "Changes the font family",
@@ -1231,6 +1223,6 @@ function importQuestions(event) {
 }
 
 // Initialize the app
-$(document).ready(function () {
+$(function () {
   init();
 });
