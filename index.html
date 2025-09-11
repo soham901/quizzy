@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#4a90e2" />
+    <meta name="theme-color" content="#0d6efd" />
     <meta name="description" content="A simple MCQ test-taking application" />
 
     <!-- PWA meta tags -->
@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-    <title>Quizzy | Soham901</title>
+    <title>Quizzy | Practice MCQs</title>
 
     <!-- Manifest -->
     <link rel="manifest" href="/manifest.json" />
@@ -21,24 +21,92 @@
     <!-- Icons -->
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
+    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="/node_modules/@picocss/pico/css/pico.min.css"
+      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <main class="container">
-      <h1>Quizzy</h1>
-      <div id="app">
-        <!-- App content will be loaded here -->
-      </div>
-    </main>
+    <div class="container-fluid">
+      <header class="app-header py-3 mb-4 border-bottom">
+        <div class="row align-items-center w-100">
+          <div class="col">
+            <h1 class="h3 mb-0">Quizzy | Practice MCQs</h1>
+          </div>
+          <div class="col-auto">
+            <button id="themeToggle" class="btn btn-outline-secondary">
+              <i class="fas fa-moon"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div id="app">
+          <!-- App content will be loaded here -->
+        </div>
+      </main>
+    </div>
+
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Theme toggle script -->
+    <script>
+      // Function to apply theme
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-bs-theme", theme);
+        localStorage.setItem("theme", theme);
+
+        // Update button icon
+        const themeIcon = $("#themeToggle i");
+        if (theme === "dark") {
+          themeIcon.removeClass("fa-moon").addClass("fa-sun");
+        } else {
+          themeIcon.removeClass("fa-sun").addClass("fa-moon");
+        }
+      }
+
+      // Function to toggle theme
+      function toggleTheme() {
+        const currentTheme =
+          document.documentElement.getAttribute("data-bs-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(newTheme);
+      }
+
+      // Initialize theme on page load
+      $(document).ready(function () {
+        // Check for saved theme or default to light
+        const savedTheme = localStorage.getItem("theme") || "light";
+        applyTheme(savedTheme);
+
+        // Add event listener to toggle button
+        $("#themeToggle").on("click", toggleTheme);
+      });
+    </script>
+
     <script type="module">
       import { defineCustomElements } from "@ionic/pwa-elements/loader";
       defineCustomElements(window);
     </script>
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/pwa.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
