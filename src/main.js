@@ -107,18 +107,18 @@ function addSampleData() {
         "Hyperlink and Text Markup Language",
       ],
       correctAnswer: 0,
-      category: "web-development",
+      category: "html",
       difficulty: "Easy",
-      subject: "html",
+      subject: "web-development",
     },
     {
       question:
         "Which CSS property is used to change the text color of an element?",
       options: ["fgcolor", "text-color", "color", "font-color"],
       correctAnswer: 2,
-      category: "web-development",
+      category: "css",
       difficulty: "Easy",
-      subject: "css",
+      subject: "web-development",
     },
     {
       question: "Which JavaScript method is used to write HTML output?",
@@ -129,9 +129,9 @@ function addSampleData() {
         "document.html()",
       ],
       correctAnswer: 0,
-      category: "programming",
+      category: "javascript",
       difficulty: "Easy",
-      subject: "javascript",
+      subject: "web-development",
     },
     {
       question: "In CSS, what does the 'font-size' property do?",
@@ -142,9 +142,9 @@ function addSampleData() {
         "Changes the style of the text",
       ],
       correctAnswer: 1,
-      category: "web-development",
+      category: "css",
       difficulty: "Easy",
-      subject: "css",
+      subject: "web-development",
     },
   ];
 
@@ -1225,4 +1225,22 @@ function importQuestions(event) {
 // Initialize the app
 $(function () {
   init();
+
+  // Add event listeners for navbar navigation
+  $("#homeLink").on("click", function (e) {
+    e.preventDefault();
+    testMode = "view";
+    render();
+  });
+
+  $("#startTestLink").on("click", function (e) {
+    e.preventDefault();
+    startTest();
+  });
+
+  $("#editQuestionsLink").on("click", function (e) {
+    e.preventDefault();
+    testMode = "edit";
+    render();
+  });
 });

@@ -44,6 +44,17 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+/* Sticky Navbar */
+.navbar {
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
 /* Theme toggle button */
 #themeToggle {
   border: none;

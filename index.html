@@ -36,20 +36,44 @@
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div class="container-fluid">
-      <header class="app-header py-3 mb-4 border-bottom">
-        <div class="row align-items-center w-100">
-          <div class="col">
-            <h1 class="h3 mb-0">Quizzy | Practice MCQs</h1>
-          </div>
-          <div class="col-auto">
-            <button id="themeToggle" class="btn btn-outline-secondary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Quizzy</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#" id="homeLink">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="startTestLink">Start Test</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="editQuestionsLink"
+                >Edit Questions</a
+              >
+            </li>
+          </ul>
+          <div class="d-flex">
+            <button id="themeToggle" class="btn btn-outline-light">
               <i class="fas fa-moon"></i>
             </button>
           </div>
         </div>
-      </header>
+      </div>
+    </nav>
 
+    <div class="container-fluid mt-4">
       <main>
         <div id="app">
           <!-- App content will be loaded here -->
