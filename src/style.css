@@ -68,15 +68,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white; /* Ensure icon is white */
 }
 
 #themeToggle:hover {
   transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
 }
 
 #themeToggle:focus {
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Override Bootstrap's btn-outline-light hover effect */
+.btn-outline-light:hover {
+  color: white !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 /* Action Buttons Container */

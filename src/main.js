@@ -1,6 +1,8 @@
 import "./style.css";
 import "./pwa.js";
 import posthog from "posthog-js";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 // Initialize PostHog analytics
 posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
@@ -24,12 +26,75 @@ let testMode = "view"; // view, test, edit, subjectSelect, topicSelect
 let selectedSubject = "";
 let selectedCategory = "";
 let filteredQuestions = [];
+let showAllQuestions = false; // New state to track if all questions should be shown
 
 // Initialize the app
 function init() {
   loadQuestions();
   showOnboarding(); // Show onboarding if no questions exist
   render();
+  initTour(); // Initialize tour guide
+}
+
+// Initialize tour guide
+function initTour() {
+  // Create driver.js instance with progress indicator
+  const driverObj = driver({
+    showButtons: true,
+    nextBtnText: "Next →",
+    prevBtnText: "← Prev",
+    doneBtnText: "Finish",
+    keyboardControl: true,
+    animate: true,
+    progressText: "{{current}} of {{total}}",
+    steps: [
+      {
+        element: ".navbar-brand",
+        popover: {
+          title: "Welcome to Quizzy!",
+          description: "This is a simple MCQ test-taking application. Let's take a quick tour.",
+          position: "bottom"
+        }
+      },
+      {
+        element: "#app",
+        popover: {
+          title: "Main Dashboard",
+          description: "This is your main dashboard where you can see your questions and start tests.",
+          position: "bottom"
+        }
+      },
+      {
+        element: "#startTest",
+        popover: {
+          title: "Start Full Test",
+          description: "Click this button to start a full test with all your questions.",
+          position: "bottom"
+        }
+      },
+      {
+        element: "#openOpenAI",
+        popover: {
+          title: "AI Prompt",
+          description: "Click this button to generate new questions using AI.",
+          position: "bottom"
+        }
+      },
+      {
+        element: "#themeToggle",
+        popover: {
+          title: "Theme Toggle",
+          description: "Use this button to switch between light and dark themes.",
+          position: "bottom"
+        }
+      },
+    ]
+  });
+
+  // Add event listener to start tour button
+  document.getElementById("startTour")?.addEventListener("click", () => {
+    driverObj.drive();
+  });
 }
 
 // Load questions from localStorage
@@ -188,6 +253,9 @@ Requirements:
   window.open(openaiUrl, "_blank");
 }
 
+// Add event listener for OpenAI button
+document.getElementById("openOpenAI")?.addEventListener("click", openOpenAI);
+
 // Show JSON input interface
 function showJsonInput() {
   app.innerHTML = `
@@ -208,7 +276,7 @@ function showJsonInput() {
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Instructions</h5>
             <ol class="mb-0">
-              <li>Generate questions using the "Generate Questions with AI" option</li>
+              <li>Generate questions using the "AI Prompt" button in the navbar</li>
               <li>Copy the JSON output from the AI</li>
               <li>Paste it in the text area above</li>
               <li>Click "Import JSON"</li>
@@ -229,6 +297,11 @@ function showJsonInput() {
 
 // Render the app based on current mode
 function render() {
+  // Reset showAllQuestions when not in view mode
+  if (testMode !== "view") {
+    showAllQuestions = false;
+  }
+  
   switch (testMode) {
     case "test":
       renderTest();
@@ -353,27 +426,40 @@ function renderAdd() {
 function renderOnboarding() {
   app.innerHTML = `
     <div class="onboarding card">
-      <div class="card-body">
-        <h1 class="card-title">Welcome to Quizzy!</h1>
-        <p class="card-text">Get started by adding some questions to your database.</p>
-        <div class="onboarding-options d-flex flex-wrap justify-content-center gap-3">
-          <button id="addSampleData" class="btn btn-primary btn-lg">
-            <i class="fas fa-database me-2"></i>Add Sample Data
-          </button>
-          <button id="uploadCustomData" class="btn btn-success btn-lg">
-            <i class="fas fa-robot me-2"></i>Generate Questions with AI
-          </button>
-          <button id="pasteJsonData" class="btn btn-info btn-lg">
-            <i class="fas fa-paste me-2"></i>Paste JSON Data
-          </button>
+      <div class="card-body text-center">
+        <h1 class="card-title mb-3">Welcome to Quizzy!</h1>
+        <p class="card-text mb-4 text-muted">Get started by adding some questions to your database</p>
+        
+        <div class="row g-3">
+          <div class="col-md-6">
+            <button id="addSampleData" class="btn btn-primary btn-lg w-100 py-3">
+              <i class="fas fa-database me-2"></i>Add Sample Data
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button id="pasteJsonData" class="btn btn-info btn-lg w-100 py-3">
+              <i class="fas fa-paste me-2"></i>Paste JSON Data
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button id="openOpenAI" class="btn btn-success btn-lg w-100 py-3">
+              <i class="fas fa-robot me-2"></i>Generate with AI
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button id="startTourCTA" class="btn btn-outline-primary btn-lg w-100 py-3">
+              <i class="fas fa-question-circle me-2"></i>Take a Tour
+            </button>
+          </div>
         </div>
+        
         <div class="instructions card mt-4">
           <div class="card-body">
-            <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Instructions</h5>
-            <ol class="mb-0">
-              <li>Generate questions using the "Generate Questions with AI" option</li>
-              <li>Copy the JSON output from the AI</li>
-              <li>Paste it in the text area using the "Paste JSON Data" option</li>
+            <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Quick Start Guide</h5>
+            <ol class="text-start mb-0 small">
+              <li>Use "Generate with AI" to create questions automatically</li>
+              <li>Copy the JSON output from AI</li>
+              <li>Paste it using "Paste JSON Data"</li>
             </ol>
           </div>
         </div>
@@ -383,8 +469,12 @@ function renderOnboarding() {
 
   // Add event listeners using jQuery
   $("#addSampleData").on("click", addSampleData);
-  $("#uploadCustomData").on("click", openOpenAI);
   $("#pasteJsonData").on("click", showJsonInput);
+  $("#openOpenAI").on("click", openOpenAI);
+  $("#startTourCTA").on("click", function() {
+    // Trigger the tour start button in the navbar
+    document.getElementById("startTour")?.click();
+  });
 }
 
 // Get unique subjects from questions
@@ -395,74 +485,103 @@ function getUniqueSubjects() {
 
 // View mode - list questions and options
 function renderView() {
-  // Show only the first 5 questions
-  const displayedQuestions = questions.slice(0, 5);
+  // Show only the first 5 questions by default, or all if showAllQuestions is true
+  const displayedQuestions = showAllQuestions ? questions : questions.slice(0, 5);
+  const hasMoreQuestions = questions.length > 5;
 
   app.innerHTML = `
     <div class="actions-container card">
       <div class="card-body">
-        <h2 class="card-title">Quiz Actions</h2>
-        <div class="button-grid">
-          <button id="startTest" class="btn btn-primary">
-            <i class="fas fa-play-circle me-2"></i>Start Full Test
-          </button>
-          <button id="startSubjectTest" class="btn btn-success">
-            <i class="fas fa-book me-2"></i>Subject-wise Test
-          </button>
-          <button id="editQuestions" class="btn btn-warning">
-            <i class="fas fa-edit me-2"></i>Edit Questions
-          </button>
-          <button id="addQuestion" class="btn btn-secondary">
-            <i class="fas fa-plus-circle me-2"></i>Add Question
-          </button>
-          <button id="exportQuestions" class="btn btn-outline-primary">
-            <i class="fas fa-file-export me-2"></i>Export Questions
-          </button>
-          <input type="file" id="importQuestions" accept=".json" style="display: none;">
-          <button id="importButton" class="btn btn-outline-secondary">
-            <i class="fas fa-file-import me-2"></i>Import Questions
-          </button>
-          <button id="clearDatabase" class="btn btn-danger">
-            <i class="fas fa-trash-alt me-2"></i>Clear Database
-          </button>
+        <h2 class="card-title mb-4">Quiz Dashboard</h2>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <button id="startTest" class="btn btn-primary w-100 py-3">
+              <i class="fas fa-play-circle me-2"></i>Start Full Test
+              <div class="small mt-1">Test yourself on all questions</div>
+            </button>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button id="startSubjectTest" class="btn btn-success w-100 py-3">
+              <i class="fas fa-book me-2"></i>Subject-wise Test
+              <div class="small mt-1">Focus on specific subjects</div>
+            </button>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button id="editQuestions" class="btn btn-warning w-100 py-3">
+              <i class="fas fa-edit me-2"></i>Edit Questions
+              <div class="small mt-1">Add, edit, or remove questions</div>
+            </button>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button id="addQuestion" class="btn btn-secondary w-100 py-3">
+              <i class="fas fa-plus-circle me-2"></i>Add Question
+              <div class="small mt-1">Manually add a new question</div>
+            </button>
+          </div>
+        </div>
+        
+        <div class="row mt-4">
+          <div class="col-md-4 mb-3">
+            <button id="exportQuestions" class="btn btn-outline-primary w-100 py-2">
+              <i class="fas fa-file-export me-2"></i>Export
+            </button>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button id="importButton" class="btn btn-outline-secondary w-100 py-2">
+              <i class="fas fa-file-import me-2"></i>Import
+            </button>
+            <input type="file" id="importQuestions" accept=".json" style="display: none;">
+          </div>
+          <div class="col-md-4 mb-3">
+            <button id="clearDatabase" class="btn btn-outline-danger w-100 py-2">
+              <i class="fas fa-trash-alt me-2"></i>Clear All
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="stats alert alert-info">
-      <p class="mb-0"><strong>Total Questions:</strong> ${questions.length}</p>
-      ${questions.length > 5 ? `<p class="mb-0 mt-2"><small>Showing first 5 questions. Import more to see all.</small></p>` : ""}
+    <div class="stats alert alert-info d-flex justify-content-between align-items-center">
+      <div>
+        <strong>Total Questions:</strong> ${questions.length}
+      </div>
+      <div>
+        ${!showAllQuestions && hasMoreQuestions ? `<a href="#" id="showAllQuestions" class="btn btn-sm btn-outline-primary">Show all questions</a>` : ""}
+        ${showAllQuestions && hasMoreQuestions ? `<a href="#" id="showLessQuestions" class="btn btn-sm btn-outline-secondary">Show less</a>` : ""}
+      </div>
     </div>
 
     <div class="questions-list">
       ${displayedQuestions
         .map(
           (q, index) => `
-        <div class="question-card">
-          <h3>Question ${index + 1}: ${q.question}</h3>
-          <div class="options">
-            ${q.options
-              .map(
-                (option, i) => `
-              <div class="option ${i === q.correctAnswer ? "correct" : ""}">
-                <strong>${String.fromCharCode(65 + i)}.</strong> ${option}
-              </div>
-            `,
-              )
-              .join("")}
-          </div>
-          <div class="question-meta">
-            <span class="meta-badge"><i class="fas fa-folder me-1"></i> ${q.category}</span>
-            <span class="meta-badge"><i class="fas fa-signal me-1"></i> ${q.difficulty}</span>
-            <span class="meta-badge"><i class="fas fa-book me-1"></i> ${q.subject}</span>
-          </div>
-          <div class="question-actions">
-            <button class="edit-btn btn btn-sm btn-outline-warning" data-index="${index}">
-              <i class="fas fa-edit me-1"></i>Edit
-            </button>
-            <button class="delete-btn btn btn-sm btn-outline-danger" data-index="${index}">
-              <i class="fas fa-trash me-1"></i>Delete
-            </button>
+        <div class="question-card card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Question ${index + 1}: ${q.question}</h5>
+            <div class="options mt-3">
+              ${q.options
+                .map(
+                  (option, i) => `
+                <div class="option ${i === q.correctAnswer ? "correct" : ""} p-2 mb-1 rounded">
+                  <strong>${String.fromCharCode(65 + i)}.</strong> ${option}
+                </div>
+              `,
+                )
+                .join("")}
+            </div>
+            <div class="question-meta mt-3">
+              <span class="meta-badge badge bg-secondary me-2"><i class="fas fa-folder me-1"></i> ${q.category}</span>
+              <span class="meta-badge badge bg-info me-2"><i class="fas fa-signal me-1"></i> ${q.difficulty}</span>
+              <span class="meta-badge badge bg-primary me-2"><i class="fas fa-book me-1"></i> ${q.subject}</span>
+            </div>
+            <div class="question-actions mt-3">
+              <button class="edit-btn btn btn-sm btn-outline-warning me-2" data-index="${index}">
+                <i class="fas fa-edit me-1"></i>Edit
+              </button>
+              <button class="delete-btn btn btn-sm btn-outline-danger" data-index="${index}">
+                <i class="fas fa-trash me-1"></i>Delete
+              </button>
+            </div>
           </div>
         </div>
       `,
@@ -491,6 +610,19 @@ function renderView() {
   });
   $("#importQuestions").on("change", importQuestions);
   $("#clearDatabase").on("click", clearDatabase);
+  
+  // Add event listeners for show more/less buttons
+  $("#showAllQuestions").on("click", function(e) {
+    e.preventDefault();
+    showAllQuestions = true;
+    render();
+  });
+  
+  $("#showLessQuestions").on("click", function(e) {
+    e.preventDefault();
+    showAllQuestions = false;
+    render();
+  });
 
   // Add event listeners for edit and delete buttons
   $(".edit-btn").on("click", function () {
@@ -511,18 +643,20 @@ function renderSubjectSelect() {
   app.innerHTML = `
     <div class="subject-select card">
       <div class="card-body">
-        <h2 class="card-title text-center">Select Subject</h2>
-        <div class="subjects-list">
+        <h2 class="card-title text-center mb-4">Select Subject</h2>
+        <div class="row">
           ${subjects
             .map(
               (subject) => `
-            <div class="subject-card card">
-              <div class="card-body text-center">
-                <h3 class="card-title">${subject}</h3>
-                <p class="card-text">${questions.filter((q) => q.subject === subject).length} questions</p>
-                <button class="select-subject btn btn-primary" data-subject="${subject}">
-                  <i class="fas fa-arrow-right me-2"></i>Select
-                </button>
+            <div class="col-md-6 col-lg-4 mb-3">
+              <div class="subject-card card h-100">
+                <div class="card-body text-center d-flex flex-column">
+                  <h3 class="card-title">${subject}</h3>
+                  <p class="card-text flex-grow-1">${questions.filter((q) => q.subject === subject).length} questions</p>
+                  <button class="select-subject btn btn-primary mt-auto" data-subject="${subject}">
+                    <i class="fas fa-arrow-right me-2"></i>Select
+                  </button>
+                </div>
               </div>
             </div>
           `,
@@ -549,6 +683,7 @@ function renderSubjectSelect() {
   $("#backToView").on("click", () => {
     testMode = "view";
     selectedSubject = "";
+    showAllQuestions = false; // Reset show all questions state
     // Show onboarding if no questions
     if (questions.length === 0) {
       showOnboarding();
@@ -564,25 +699,27 @@ function renderTopicSelect() {
   app.innerHTML = `
     <div class="topic-select card">
       <div class="card-body">
-        <h2 class="card-title text-center">Select Topic for ${selectedSubject}</h2>
-        <div class="topics-list">
+        <h2 class="card-title text-center mb-4">Select Topic for ${selectedSubject}</h2>
+        <div class="row">
           ${categories
             .map(
               (category) => `
-            <div class="topic-card card">
-              <div class="card-body text-center">
-                <h3 class="card-title">${category}</h3>
-                <p class="card-text">${questions.filter((q) => q.subject === selectedSubject && q.category === category).length} questions</p>
-                <button class="select-topic btn btn-primary" data-category="${category}">
-                  <i class="fas fa-arrow-right me-2"></i>Select
-                </button>
+            <div class="col-md-6 col-lg-4 mb-3">
+              <div class="topic-card card h-100">
+                <div class="card-body text-center d-flex flex-column">
+                  <h3 class="card-title">${category}</h3>
+                  <p class="card-text flex-grow-1">${questions.filter((q) => q.subject === selectedSubject && q.category === category).length} questions</p>
+                  <button class="select-topic btn btn-primary mt-auto" data-category="${category}">
+                    <i class="fas fa-arrow-right me-2"></i>Select
+                  </button>
+                </div>
               </div>
             </div>
           `,
             )
             .join("")}
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mt-4">
           <button id="backToSubjectSelect" class="btn btn-secondary">
             <i class="fas fa-arrow-left me-2"></i>Back to Subjects
           </button>
@@ -606,6 +743,14 @@ function renderTopicSelect() {
   $("#backToSubjectSelect").on("click", () => {
     testMode = "subjectSelect";
     selectedCategory = "";
+    render();
+  });
+  
+  $("#backToView").on("click", () => {
+    testMode = "view";
+    selectedSubject = "";
+    selectedCategory = "";
+    showAllQuestions = false; // Reset show all questions state
     render();
   });
 }
@@ -675,16 +820,17 @@ function renderTest() {
   const question = testQuestions[currentQuestionIndex];
 
   app.innerHTML = `
-    <div class="test-header card">
+    <div class="test-header card mb-4">
       <div class="card-body">
-        <h2 class="card-title">Question ${currentQuestionIndex + 1} of ${testQuestions.length}</h2>
-        ${
-          filteredQuestions.length > 0
-            ? `<p class="card-text"><i class="fas fa-book me-1"></i>${selectedSubject}</p>`
-            : `<p class="card-text"><i class="fas fa-globe me-1"></i>Full Test</p>`
-        }
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: ${(currentQuestionIndex / testQuestions.length) * 100}%" aria-valuenow="${currentQuestionIndex}" aria-valuemin="0" aria-valuemax="${testQuestions.length}"></div>
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 class="card-title mb-0">Question ${currentQuestionIndex + 1} of ${testQuestions.length}</h2>
+          ${filteredQuestions.length > 0
+            ? `<span class="badge bg-success"><i class="fas fa-book me-1"></i>${selectedSubject}</span>`
+            : `<span class="badge bg-primary"><i class="fas fa-globe me-1"></i>Full Test</span>`
+          }
+        </div>
+        <div class="progress mt-3">
+          <div class="progress-bar" role="progressbar" style="width: ${((currentQuestionIndex) / testQuestions.length) * 100}%" aria-valuenow="${currentQuestionIndex}" aria-valuemin="0" aria-valuemax="${testQuestions.length}"></div>
         </div>
       </div>
     </div>
@@ -712,10 +858,12 @@ function renderTest() {
       )
       .join("")}
   </div>
-        <div class="test-actions">
-          ${currentQuestionIndex > 0 ? '<button id="prevQuestion" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Previous</button>' : ""}
-          <button id="checkAnswer" class="btn btn-info"><i class="fas fa-check-circle me-2"></i>Check Answer</button>
-          <button id="nextQuestion" class="btn btn-primary">${currentQuestionIndex === testQuestions.length - 1 ? '<i class="fas fa-flag-checkered me-2"></i>Finish' : '<i class="fas fa-arrow-right me-2"></i>Next'}</button>
+        <div class="test-actions d-flex justify-content-between mt-4">
+          ${currentQuestionIndex > 0 ? '<button id="prevQuestion" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Previous</button>' : '<div></div>'}
+          <div>
+            <button id="checkAnswer" class="btn btn-info me-2"><i class="fas fa-check-circle me-2"></i>Check Answer</button>
+            <button id="nextQuestion" class="btn btn-primary">${currentQuestionIndex === testQuestions.length - 1 ? '<i class="fas fa-flag-checkered me-2"></i>Finish' : '<i class="fas fa-arrow-right me-2"></i>Next'}</button>
+          </div>
         </div>
       </div>
     </div>
@@ -816,15 +964,16 @@ function showResults() {
   app.innerHTML = `
     <div class="results card">
       <div class="card-body">
-        <h2 class="card-title text-center">Test Results</h2>
-        <div class="score alert ${percentage >= 70 ? "alert-success" : percentage >= 50 ? "alert-warning" : "alert-danger"}">
-          <h3 class="text-center">You scored ${correctAnswers} out of ${testQuestions.length}</h3>
-          <p class="text-center h4">Percentage: ${percentage}%</p>
-          ${
-            filteredQuestions.length > 0
-              ? `<p class="text-center"><i class="fas fa-book me-1"></i>Test Type: ${selectedSubject}</p>`
-              : `<p class="text-center"><i class="fas fa-globe me-1"></i>Test Type: Full Test</p>`
-          }
+        <h2 class="card-title text-center mb-4">Test Results</h2>
+        <div class="score text-center p-4 rounded mb-4 ${percentage >= 70 ? "bg-success text-white" : percentage >= 50 ? "bg-warning" : "bg-danger text-white"}">
+          <h3 class="mb-3">You scored ${correctAnswers} out of ${testQuestions.length}</h3>
+          <p class="display-4 mb-2">${percentage}%</p>
+          <p class="mb-0">
+            ${filteredQuestions.length > 0
+              ? `<i class="fas fa-book me-1"></i>Test Type: ${selectedSubject}`
+              : `<i class="fas fa-globe me-1"></i>Test Type: Full Test`
+            }
+          </p>
         </div>
         <div class="answers-review">
           <h3 class="mb-4"><i class="fas fa-book-open me-2"></i>Review Answers</h3>
@@ -842,7 +991,7 @@ function showResults() {
             )
             .join("")}
         </div>
-        <div class="d-flex justify-content-center gap-3">
+        <div class="d-flex justify-content-center gap-3 mt-4">
           <button id="restartTest" class="btn btn-primary">
             <i class="fas fa-redo me-2"></i>Restart Test
           </button>
@@ -869,6 +1018,7 @@ function showResults() {
     filteredQuestions = [];
     selectedSubject = "";
     selectedCategory = "";
+    showAllQuestions = false; // Reset show all questions state
     // Show onboarding if no questions
     if (questions.length === 0) {
       showOnboarding();
@@ -1064,6 +1214,7 @@ function renderEdit() {
     // Add event listeners using jQuery
     $("#backToView").on("click", () => {
       testMode = "view";
+      showAllQuestions = false; // Reset show all questions state
       // Show onboarding if no questions
       if (questions.length === 0) {
         showOnboarding();
@@ -1230,6 +1381,7 @@ $(function () {
   $("#homeLink").on("click", function (e) {
     e.preventDefault();
     testMode = "view";
+    showAllQuestions = false; // Reset show all questions state
     render();
   });
 
@@ -1241,6 +1393,7 @@ $(function () {
   $("#editQuestionsLink").on("click", function (e) {
     e.preventDefault();
     testMode = "edit";
+    showAllQuestions = false; // Reset show all questions state
     render();
   });
 });
