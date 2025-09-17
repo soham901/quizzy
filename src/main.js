@@ -872,7 +872,7 @@ function renderTest() {
             ${userAnswers[currentQuestionIndex] === i ? "checked" : ""}
             class="me-2 option-radio"
           >
-          <span class="flex-grow-1 option-text">${String.fromCharCode(65 + i)}. ${option}</span>
+          <span class="flex-grow-1 option-text">${String.fromCharCode(65 + i)}. ${escapeHtml(option)}</span>
         </label>
       </div>
     `,
