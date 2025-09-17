@@ -164,6 +164,19 @@ function addSampleData() {
   // Add 5 sample questions
   const sampleQuestions = [
     {
+    question: "Which is a valid HTML tag?",
+      options: [
+        "<bro>",
+        "<br>",
+        "<hy>",
+        "<abb>",
+      ],
+      correctAnswer: 0,
+      category: "html",
+      difficulty: "Easy",
+      subject: "web-development",
+  },
+    {
       question: "What does HTML stand for?",
       options: [
         "Hyper Text Markup Language",
@@ -301,7 +314,7 @@ function render() {
   if (testMode !== "view") {
     showAllQuestions = false;
   }
-  
+
   switch (testMode) {
     case "test":
       renderTest();
@@ -429,7 +442,7 @@ function renderOnboarding() {
       <div class="card-body text-center">
         <h1 class="card-title mb-3">Welcome to Quizzy!</h1>
         <p class="card-text mb-4 text-muted">Get started by adding some questions to your database</p>
-        
+
         <div class="row g-3">
           <div class="col-md-6">
             <button id="addSampleData" class="btn btn-primary btn-lg w-100 py-3">
@@ -442,7 +455,7 @@ function renderOnboarding() {
             </button>
           </div>
           <div class="col-md-6">
-            <button id="openOpenAI" class="btn btn-success btn-lg w-100 py-3">
+            <button id="openOpenAI2" class="btn btn-success btn-lg w-100 py-3">
               <i class="fas fa-robot me-2"></i>Generate with AI
             </button>
           </div>
@@ -452,7 +465,7 @@ function renderOnboarding() {
             </button>
           </div>
         </div>
-        
+
         <div class="instructions card mt-4">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-info-circle me-2"></i>Quick Start Guide</h5>
@@ -471,6 +484,7 @@ function renderOnboarding() {
   $("#addSampleData").on("click", addSampleData);
   $("#pasteJsonData").on("click", showJsonInput);
   $("#openOpenAI").on("click", openOpenAI);
+  $("#openOpenAI2").on("click", openOpenAI);
   $("#startTourCTA").on("click", function() {
     // Trigger the tour start button in the navbar
     document.getElementById("startTour")?.click();
@@ -481,6 +495,13 @@ function renderOnboarding() {
 function getUniqueSubjects() {
   const subjects = [...new Set(questions.map((q) => q.subject))];
   return subjects.filter((s) => s); // Filter out empty/null values
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 // View mode - list questions and options
@@ -519,7 +540,7 @@ function renderView() {
             </button>
           </div>
         </div>
-        
+
         <div class="row mt-4">
           <div class="col-md-4 mb-3">
             <button id="exportQuestions" class="btn btn-outline-primary w-100 py-2">
@@ -563,7 +584,7 @@ function renderView() {
                 .map(
                   (option, i) => `
                 <div class="option ${i === q.correctAnswer ? "correct" : ""} p-2 mb-1 rounded">
-                  <strong>${String.fromCharCode(65 + i)}.</strong> ${option}
+                  <strong>${String.fromCharCode(65 + i)}.</strong> ${escapeHtml(option)}
                 </div>
               `,
                 )
@@ -610,14 +631,14 @@ function renderView() {
   });
   $("#importQuestions").on("change", importQuestions);
   $("#clearDatabase").on("click", clearDatabase);
-  
+
   // Add event listeners for show more/less buttons
   $("#showAllQuestions").on("click", function(e) {
     e.preventDefault();
     showAllQuestions = true;
     render();
   });
-  
+
   $("#showLessQuestions").on("click", function(e) {
     e.preventDefault();
     showAllQuestions = false;
@@ -745,7 +766,7 @@ function renderTopicSelect() {
     selectedCategory = "";
     render();
   });
-  
+
   $("#backToView").on("click", () => {
     testMode = "view";
     selectedSubject = "";
