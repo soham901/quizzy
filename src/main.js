@@ -31,12 +31,44 @@ let selectedCategory = "";
 let filteredQuestions = [];
 let showAllQuestions = false; // New state to track if all questions should be shown
 
+// Helper function to close mobile navbar
+function closeMobileNavbar() {
+  // Check if we're on a mobile device and the navbar is expanded
+  const navbarCollapse = document.getElementById("navbarNav");
+  if (navbarCollapse && navbarCollapse.classList.contains("show")) {
+    // Close the navbar using Bootstrap's collapse functionality
+    const bootstrapCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+    if (bootstrapCollapse) {
+      bootstrapCollapse.hide();
+    } else {
+      // Fallback: manually remove the 'show' class
+      navbarCollapse.classList.remove("show");
+    }
+  }
+}
+
+// Initialize mobile navbar functionality
+function initializeMobileNavbar() {
+  // Add event listeners to close mobile navbar when clicking nav links
+  $(document).on('click', '#navbarNav .nav-link', function() {
+    closeMobileNavbar();
+  });
+  
+  // Add event listener for hash changes
+  $(window).on('hashchange', function() {
+    closeMobileNavbar();
+  });
+}
+
 // Initialize the app
 function init() {
   loadQuestions();
   showOnboarding(); // Show onboarding if no questions exist
   render();
   initTour(); // Initialize tour guide
+  
+  // Initialize Bootstrap components for mobile navbar
+  initializeMobileNavbar();
   
   // Check if we should show viva practice
   if (window.location.hash === "#viva") {
@@ -1424,11 +1456,15 @@ $(function () {
     testMode = "view";
     showAllQuestions = false; // Reset show all questions state
     render();
+    // Close mobile navbar menu if open
+    closeMobileNavbar();
   });
 
   $(document).on("click", "#startTestLink", function (e) {
     e.preventDefault();
     startTest();
+    // Close mobile navbar menu if open
+    closeMobileNavbar();
   });
 
   $(document).on("click", "#editQuestionsLink", function (e) {
@@ -1436,12 +1472,16 @@ $(function () {
     testMode = "edit";
     showAllQuestions = false; // Reset show all questions state
     render();
+    // Close mobile navbar menu if open
+    closeMobileNavbar();
   });
   
   $(document).on("click", "#vivaPracticeLink", function (e) {
     e.preventDefault();
-    window.location.hash = "viva";
+    window.location.hash = "#viva";
     showVivaPractice();
+    // Close mobile navbar menu if open
+    closeMobileNavbar();
   });
   
   // Handle hash changes for navigation
@@ -1453,5 +1493,7 @@ $(function () {
       showAllQuestions = false;
       render();
     }
+    // Close mobile navbar menu if open
+    closeMobileNavbar();
   });
 });
