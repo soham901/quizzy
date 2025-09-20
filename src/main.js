@@ -4,6 +4,9 @@ import posthog from "posthog-js";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 
+// Import Viva Practice component
+import VivaPractice from "./capacitor/viva-practice.js";
+
 // Initialize PostHog analytics
 posthog.init(import.meta.env.VITE_PUBLIC_POSTHOG_KEY, {
   api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
@@ -34,6 +37,23 @@ function init() {
   showOnboarding(); // Show onboarding if no questions exist
   render();
   initTour(); // Initialize tour guide
+  
+  // Check if we should show viva practice
+  if (window.location.hash === "#viva") {
+    showVivaPractice();
+  }
+}
+
+// Show viva practice
+async function showVivaPractice() {
+  // Clear any existing intervals
+  if (window.vivaTimerInterval) {
+    clearInterval(window.vivaTimerInterval);
+    window.vivaTimerInterval = null;
+  }
+  
+  const vivaPractice = new VivaPractice();
+  await vivaPractice.init();
 }
 
 // Initialize tour guide
@@ -1399,22 +1419,39 @@ $(function () {
   init();
 
   // Add event listeners for navbar navigation
-  $("#homeLink").on("click", function (e) {
+  $(document).on("click", "#homeLink", function (e) {
     e.preventDefault();
     testMode = "view";
     showAllQuestions = false; // Reset show all questions state
     render();
   });
 
-  $("#startTestLink").on("click", function (e) {
+  $(document).on("click", "#startTestLink", function (e) {
     e.preventDefault();
     startTest();
   });
 
-  $("#editQuestionsLink").on("click", function (e) {
+  $(document).on("click", "#editQuestionsLink", function (e) {
     e.preventDefault();
     testMode = "edit";
     showAllQuestions = false; // Reset show all questions state
     render();
+  });
+  
+  $(document).on("click", "#vivaPracticeLink", function (e) {
+    e.preventDefault();
+    window.location.hash = "viva";
+    showVivaPractice();
+  });
+  
+  // Handle hash changes for navigation
+  $(window).on("hashchange", function() {
+    if (window.location.hash === "#viva") {
+      showVivaPractice();
+    } else {
+      testMode = "view";
+      showAllQuestions = false;
+      render();
+    }
   });
 });
