@@ -52,28 +52,8 @@ async function showVivaPractice() {
     window.vivaTimerInterval = null;
   }
   
-  try {
-    const vivaPractice = new VivaPractice();
-    await vivaPractice.init();
-  } catch (error) {
-    console.error("Error initializing VivaPractice:", error);
-    // Show error message to user
-    const app = document.getElementById("app");
-    if (app) {
-      app.innerHTML = `
-        <div class="alert alert-danger">
-          <h4>Error Loading Viva Practice</h4>
-          <p>There was an error loading the viva practice module: ${error.message}</p>
-          <p>Please check the console for more details.</p>
-          <button id="backToMain" class="btn btn-primary">Back to Main Menu</button>
-        </div>
-      `;
-      document.getElementById("backToMain")?.addEventListener("click", () => {
-        window.location.hash = "";
-        window.location.reload();
-      });
-    }
-  }
+  const vivaPractice = new VivaPractice();
+  await vivaPractice.init();
 }
 
 // Initialize tour guide

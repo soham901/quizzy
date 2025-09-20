@@ -4,16 +4,13 @@ import MCQApp from "./mcq-app.js";
 // Load viva questions from the JSON file
 async function loadVivaQuestions() {
   try {
-    console.log("Attempting to load viva questions...");
     // Files in the public directory are served at the root path
     const response = await fetch('/data/DM_viva_Curated.json');
-    console.log(`Response:`, response.status, response.ok);
     if (!response.ok) {
       throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
     }
     
     const data = await response.json();
-    console.log("Data loaded successfully:", data);
     
     // Flatten the questions from all units into a single array
     const allQuestions = data.units.flatMap(unit =>
@@ -22,6 +19,20 @@ async function loadVivaQuestions() {
     return { allQuestions, units: data.units };
   } catch (error) {
     console.error("Error loading viva questions:", error);
+    // Try a fallback approach for development
+    try {
+      const response = await fetch('./data/DM_viva_Curated.json');
+      if (response.ok) {
+        const data = await response.json();
+        const allQuestions = data.units.flatMap(unit =>
+          unit.vivaQuestions.map(q => ({ ...q, unit: unit.title }))
+        );
+        return { allQuestions, units: data.units };
+      }
+    } catch (fallbackError) {
+      console.error("Fallback also failed:", fallbackError);
+    }
+    
     // Show error in UI
     const app = document.getElementById("app");
     if (app) {

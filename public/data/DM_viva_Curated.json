@@ -4,57 +4,72 @@
       "title": "Unit 1 - Introduction to Data Mining",
       "vivaQuestions": [
         {
-          "question": "What is Data Mining, and how does it differ from traditional database queries?",
-          "answer": "Data Mining extracts hidden patterns, correlations, or knowledge from large datasets. Traditional queries only retrieve specific records based on conditions.",
-          "tags": [
-            "data mining",
-            "definition",
-            "difference",
-            "queries"
-          ],
-          "source": "syllabus",
-          "difficulty": "medium"
-        },
-        {
-          "question": "List the six steps in the KDD (Knowledge Discovery in Databases) process.",
-          "answer": "Steps: Selection, Preprocessing, Transformation, Data Mining, Pattern Evaluation, Knowledge Presentation.",
-          "tags": [
-            "KDD",
-            "process",
-            "steps"
-          ],
+          "question": "What is Data Mining?",
+          "answer": "It is extracting knowledge or patterns from large datasets using techniques from ML, statistics, and DB systems.",
+          "tags": ["data mining", "definition"],
           "source": "syllabus",
           "difficulty": "easy"
         },
         {
-          "question": "Differentiate between descriptive and predictive data mining tasks with examples.",
-          "answer": "Descriptive tasks summarize existing patterns (e.g., clustering, trends). Predictive tasks forecast future outcomes (e.g., classification, regression).",
-          "tags": [
-            "descriptive",
-            "predictive",
-            "tasks"
-          ],
+          "question": "Differentiate between Data Mining and traditional database queries.",
+          "answer": "Data Mining finds hidden patterns, correlations, and predictions, while database queries retrieve specific data records.",
+          "tags": ["data mining", "queries"],
           "source": "syllabus",
           "difficulty": "medium"
         },
         {
-          "question": "What kinds of data can be mined? Provide real-world examples.",
-          "answer": "Data types: Relational databases (SQL), data warehouses (stock market), transactional databases (Amazon shopping), multimedia data (YouTube).",
-          "tags": [
-            "data types",
-            "examples"
-          ],
+          "question": "List the steps in the KDD process.",
+          "answer": "Selection, Preprocessing, Transformation, Data Mining, Pattern Evaluation, Knowledge Presentation.",
+          "tags": ["KDD", "process"],
           "source": "syllabus",
           "difficulty": "easy"
         },
         {
-          "question": "Give an example of how Data Mining is applied in real life outside academics.",
-          "answer": "Example: Google Search uses mining of historical queries and clicks to recommend better ranked results.",
-          "tags": [
-            "industry",
-            "google",
-            "search"
-          ],
+          "question": "What kinds of data can be mined? Give examples.",
+          "answer": "Relational DB (SQL Server), Warehouses (D-Mart sales), Transactional DB (Amazon), Multimedia (YouTube).",
+          "tags": ["data types", "examples"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Differentiate descriptive vs predictive tasks with examples.",
+          "answer": "Descriptive: summarize data (clustering, frequent patterns). Predictive: forecast future outcomes (classification, regression).",
+          "tags": ["tasks", "descriptive", "predictive"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Compute mean, median, and mode for a dataset [5, 7, 7, 8, 10].",
+          "answer": "Mean=7.4, Median=7, Mode=7.",
+          "tags": ["statistics"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Explain the Data Mining Architecture.",
+          "answer": "Includes DB/warehouse, mining engine, knowledge base, pattern evaluation, GUI.",
+          "tags": ["architecture"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What are major issues in data mining?",
+          "answer": "Scalability, high-dimensionality, noisy/incomplete data, privacy, integration of heterogeneous data.",
+          "tags": ["issues", "data mining"],
+          "source": "syllabus",
+          "difficulty": "hard"
+        },
+        {
+          "question": "How does Netflix use data mining for recommendations?",
+          "answer": "Uses collaborative filtering and classification on user ratings to recommend movies; constraint: scalability and cold start.",
+          "tags": ["industry", "netflix", "recommendation"],
+          "source": "out_of_syllabus",
+          "difficulty": "hard"
+        },
+        {
+          "question": "How does Google Search apply data mining?",
+          "answer": "Analyzes historical query-click patterns for ranking and autocomplete suggestions; constraint: real-time latency.",
+          "tags": ["industry", "google", "search"],
           "source": "out_of_syllabus",
           "difficulty": "hard"
         }
@@ -64,54 +79,65 @@
       "title": "Unit 2 - Data Preprocessing",
       "vivaQuestions": [
         {
-          "question": "Why is data preprocessing necessary before applying Data Mining algorithms?",
-          "answer": "Because real-world data is noisy, incomplete, or inconsistent. Preprocessing ensures cleaned and structured data, improving mining accuracy.",
-          "tags": [
-            "data preprocessing",
-            "importance"
-          ],
-          "source": "syllabus",
-          "difficulty": "medium"
-        },
-        {
-          "question": "Explain two methods to handle missing values in datasets.",
-          "answer": "Methods: (1) Fill with mean/median of the attribute. (2) Predict using regression or decision trees.",
-          "tags": [
-            "missing values",
-            "handling"
-          ],
-          "source": "syllabus",
-          "difficulty": "medium"
-        },
-        {
-          "question": "What are noisy data? Explain binning as a smoothing method.",
-          "answer": "Noisy data contains errors or outliers. Binning groups values into bins and replaces them with mean/median/boundaries to reduce noise.",
-          "tags": [
-            "noisy data",
-            "binning",
-            "smoothing"
-          ],
+          "question": "Why is preprocessing required?",
+          "answer": "Real-world data is noisy, incomplete, inconsistent. Preprocessing improves decision quality.",
+          "tags": ["preprocessing"],
           "source": "syllabus",
           "difficulty": "easy"
         },
         {
-          "question": "What is schema integration in data preprocessing?",
-          "answer": "Schema integration merges attributes from multiple sources, e.g., mapping 'cust_id' in one dataset with 'customer#' in another.",
-          "tags": [
-            "schema integration",
-            "integration"
-          ],
+          "question": "List methods to handle missing values.",
+          "answer": "Ignore tuple, fill manually, global constant, mean/median, class-based mean/median, regression.",
+          "tags": ["missing values"],
           "source": "syllabus",
           "difficulty": "medium"
         },
         {
-          "question": "Why is preprocessing especially important in healthcare systems?",
-          "answer": "Because poor preprocessing can cause incorrect diagnostic models, risking patient safety.",
-          "tags": [
-            "industry",
-            "healthcare",
-            "preprocessing"
-          ],
+          "question": "Explain noisy data and smoothing by binning.",
+          "answer": "Noisy data contains errors/outliers. Binning groups sorted values into bins and replaces with mean, median, or boundary.",
+          "tags": ["noisy data", "binning"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What is schema integration?",
+          "answer": "Merging attributes from different sources, e.g., cust_id = customer#.",
+          "tags": ["schema integration"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What is redundancy due to data integration?",
+          "answer": "Duplicates across tables; resolved by normalization and foreign keys.",
+          "tags": ["redundancy"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Perform equal-width binning for [5,10,11,13,15, 35,50,55,72,92,204,215] into 3 bins.",
+          "answer": "Width=70. Bin1=5–75, Bin2=75–145, Bin3=145–215.",
+          "tags": ["binning", "problem"],
+          "source": "syllabus",
+          "difficulty": "hard"
+        },
+        {
+          "question": "Explain regression as a smoothing method.",
+          "answer": "Fits data to a function (linear/multiple regression). Used for trend detection.",
+          "tags": ["regression", "smoothing"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "How is preprocessing applied in healthcare systems?",
+          "answer": "Ensures cleaned and integrated data for models; errors can cause misdiagnosis. Constraint: patient safety.",
+          "tags": ["industry", "healthcare"],
+          "source": "out_of_syllabus",
+          "difficulty": "hard"
+        },
+        {
+          "question": "Explain ETL in retail pipelines.",
+          "answer": "Extract → clean → integrate → transform sales data. Constraint: streaming latency and data volume.",
+          "tags": ["industry", "etl", "retail"],
           "source": "out_of_syllabus",
           "difficulty": "hard"
         }
@@ -121,55 +147,58 @@
       "title": "Unit 3 - Frequent Patterns, Associations, and Correlations",
       "vivaQuestions": [
         {
-          "question": "What is Market Basket Analysis, and why is it important?",
-          "answer": "It finds associations between items bought together. Example: If customers buy bread, they often buy butter. Useful in promotions and placement.",
-          "tags": [
-            "market basket",
-            "analysis"
-          ],
+          "question": "What is Market Basket Analysis?",
+          "answer": "Finds associations among items purchased together. Example: Bread → Butter.",
+          "tags": ["market basket"],
           "source": "syllabus",
           "difficulty": "easy"
         },
         {
-          "question": "Define support and confidence in association rule mining.",
-          "answer": "Support: fraction of transactions containing X and Y. Confidence: probability of Y given X in a rule X\u2192Y.",
-          "tags": [
-            "association rules",
-            "support",
-            "confidence"
-          ],
+          "question": "Define support and confidence.",
+          "answer": "Support = fraction of transactions with X∪Y. Confidence = probability of Y given X.",
+          "tags": ["support", "confidence"],
           "source": "syllabus",
           "difficulty": "medium"
         },
         {
-          "question": "Differentiate between closed frequent itemsets and maximal frequent itemsets.",
+          "question": "Differentiate closed frequent itemsets and maximal itemsets.",
           "answer": "Closed: no superset has same support. Maximal: no superset is frequent.",
-          "tags": [
-            "frequent itemsets",
-            "closed",
-            "maximal"
-          ],
+          "tags": ["frequent itemsets"],
           "source": "syllabus",
           "difficulty": "medium"
         },
         {
-          "question": "Explain the Apriori algorithm with an example.",
-          "answer": "Apriori finds frequent itemsets iteratively. Frequent k-itemsets expand to (k+1)-itemsets until no more frequent sets. Example: mining shopping cart data.",
-          "tags": [
-            "apriori",
-            "algorithm"
-          ],
+          "question": "Explain Apriori algorithm.",
+          "answer": "Generates frequent k-itemsets, expands iteratively to (k+1)-itemsets until no more frequent sets.",
+          "tags": ["apriori"],
           "source": "syllabus",
           "difficulty": "hard"
         },
         {
-          "question": "How do retailers like Walmart use frequent pattern mining?",
-          "answer": "They identify co-purchased items (e.g., diapers and beer) to optimize stock placement and increase sales.",
-          "tags": [
-            "industry",
-            "retail",
-            "frequent patterns"
-          ],
+          "question": "Explain FP-growth algorithm in brief.",
+          "answer": "Builds compressed FP-tree of transactions, mines patterns without candidate generation.",
+          "tags": ["fp-growth"],
+          "source": "syllabus",
+          "difficulty": "hard"
+        },
+        {
+          "question": "Problem: Compute support and confidence for {Milk, Chocolate} ⇒ {Pepsi}.",
+          "answer": "Support=40%, Confidence=67%.",
+          "tags": ["association rules", "problem"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "How does Walmart use association rule mining?",
+          "answer": "Finds co-purchases (diapers & beer) for store placement. Constraint: storage and real-time analysis.",
+          "tags": ["industry", "walmart"],
+          "source": "out_of_syllabus",
+          "difficulty": "hard"
+        },
+        {
+          "question": "How can Amazon use frequent pattern mining?",
+          "answer": "To build recommendation systems from shopping cart data. Constraint: scalability, personalization.",
+          "tags": ["industry", "amazon", "recommendation"],
           "source": "out_of_syllabus",
           "difficulty": "hard"
         }
@@ -179,55 +208,67 @@
       "title": "Unit 4 - Classification",
       "vivaQuestions": [
         {
-          "question": "Differentiate between classification and regression tasks.",
-          "answer": "Classification predicts categorical outputs (safe/risky), while regression predicts continuous values (price, temperature).",
-          "tags": [
-            "classification",
-            "regression"
-          ],
+          "question": "What is classification?",
+          "answer": "Predicts categorical class labels based on training data.",
+          "tags": ["classification"],
           "source": "syllabus",
           "difficulty": "easy"
         },
         {
-          "question": "What are the two main steps in the classification process?",
-          "answer": "Step 1: Training phase with labeled data. Step 2: Classification phase where the model predicts unseen data.",
-          "tags": [
-            "classification",
-            "steps"
-          ],
+          "question": "Differentiate classification and regression.",
+          "answer": "Classification = categorical output. Regression = continuous output.",
+          "tags": ["classification", "regression"],
+          "source": "syllabus",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What are the two phases of classification?",
+          "answer": "Training (build model) and Classification (apply model).",
+          "tags": ["phases", "classification"],
+          "source": "syllabus",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Explain Decision Tree Induction algorithm steps.",
+          "answer": "Choose attribute by info gain, split recursively, stop when pure/no attributes.",
+          "tags": ["decision tree", "algorithm"],
+          "source": "syllabus",
+          "difficulty": "hard"
+        },
+        {
+          "question": "What are attribute selection measures?",
+          "answer": "Information Gain, Gain Ratio, Gini Index.",
+          "tags": ["attribute selection"],
           "source": "syllabus",
           "difficulty": "medium"
         },
         {
-          "question": "What is a decision tree? Describe attribute selection measures.",
-          "answer": "A decision tree is a tree model where nodes are attributes and leaves are class labels. Selection measures include Information Gain, Gain Ratio, Gini Index.",
-          "tags": [
-            "decision tree",
-            "attribute selection"
-          ],
+          "question": "Problem: Calculate entropy and information gain for Age in buys_computer dataset.",
+          "answer": "Entropy=0.940, Gain(Age)=0.246.",
+          "tags": ["entropy", "info gain", "problem"],
           "source": "syllabus",
           "difficulty": "hard"
         },
         {
-          "question": "Explain the Decision Tree Induction algorithm in steps.",
-          "answer": "Steps: Start with training data. Choose best attribute using selection measure. Split data recursively until classes are pure or no attributes remain.",
-          "tags": [
-            "decision tree induction",
-            "algorithm"
-          ],
+          "question": "What is Naïve Bayes classifier?",
+          "answer": "Probabilistic model using conditional independence assumption. Use case: spam filtering.",
+          "tags": ["naive bayes"],
           "source": "syllabus",
-          "difficulty": "hard"
+          "difficulty": "medium"
         },
         {
-          "question": "How do banks use classification models for loan approval?",
-          "answer": "Banks classify applicants into safe/risky categories based on attributes like income, credit score, and age.",
-          "tags": [
-            "industry",
-            "loan",
-            "classification"
-          ],
+          "question": "How is classification used in loan approvals?",
+          "answer": "Banks classify applicants into safe/risky based on income, credit score, etc.",
+          "tags": ["industry", "loan", "classification"],
           "source": "out_of_syllabus",
           "difficulty": "medium"
+        },
+        {
+          "question": "How is fraud detection handled with classification?",
+          "answer": "Classifies transactions as normal/fraudulent. Constraint: imbalanced datasets, real-time latency.",
+          "tags": ["industry", "fraud detection"],
+          "source": "out_of_syllabus",
+          "difficulty": "hard"
         }
       ]
     },
@@ -235,65 +276,74 @@
       "title": "Unit 5 - Clustering",
       "vivaQuestions": [
         {
-          "question": "What is the difference between supervised and unsupervised learning?",
-          "answer": "Supervised uses labeled data for prediction (classification). Unsupervised uses unlabeled data for grouping (clustering).",
-          "tags": [
-            "supervised learning",
-            "unsupervised learning"
-          ],
+          "question": "What is clustering?",
+          "answer": "Partitioning objects into groups with high intra-class similarity and low inter-class similarity.",
+          "tags": ["clustering"],
           "source": "syllabus",
           "difficulty": "easy"
         },
         {
-          "question": "Differentiate between classification and clustering.",
-          "answer": "Classification assigns predefined labels to data (supervised). Clustering groups similar data without labels (unsupervised).",
-          "tags": [
-            "classification",
-            "clustering",
-            "difference"
-          ],
+          "question": "Differentiate clustering and classification.",
+          "answer": "Clustering = unsupervised, no labels. Classification = supervised, requires labels.",
+          "tags": ["clustering", "classification"],
+          "source": "syllabus",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What are requirements of a good clustering algorithm?",
+          "answer": "Scalability, ability to handle different types of attributes, robustness to noise, arbitrary shape detection.",
+          "tags": ["clustering", "requirements"],
           "source": "syllabus",
           "difficulty": "medium"
         },
         {
-          "question": "What are the requirements of a good clustering algorithm?",
-          "answer": "Scalability, ability to handle different data types, robustness to noise, ability to detect arbitrary shapes, interpretability.",
-          "tags": [
-            "clustering",
-            "requirements"
-          ],
-          "source": "syllabus",
-          "difficulty": "hard"
-        },
-        {
-          "question": "Explain k-means clustering with its working steps.",
-          "answer": "Steps: Choose k initial centers. Assign points to nearest cluster. Update cluster centers as mean. Repeat until assignments stabilize.",
-          "tags": [
-            "k-means",
-            "algorithm"
-          ],
+          "question": "Explain k-means algorithm steps.",
+          "answer": "Choose k centroids, assign points, recalc means, repeat until stable.",
+          "tags": ["k-means"],
           "source": "syllabus",
           "difficulty": "medium"
         },
         {
-          "question": "What is density-based clustering? Provide one advantage.",
-          "answer": "It identifies clusters as dense regions separated by sparse areas. Advantage: Can detect clusters of arbitrary shapes and filter outliers.",
-          "tags": [
-            "density-based clustering"
-          ],
+          "question": "Perform one iteration of k-means with given dataset.",
+          "answer": "Assign to nearest centroid using Euclidean distance, update centroids.",
+          "tags": ["k-means", "problem"],
           "source": "syllabus",
           "difficulty": "hard"
         },
         {
-          "question": "How does clustering help in customer segmentation?",
-          "answer": "It groups customers with similar behavior (e.g., buying patterns), enabling personalized marketing strategies.",
-          "tags": [
-            "industry",
-            "marketing",
-            "clustering"
-          ],
+          "question": "Explain hierarchical clustering with AGNES vs DIANA.",
+          "answer": "AGNES = bottom-up merging. DIANA = top-down splitting.",
+          "tags": ["hierarchical", "agnes", "diana"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What is DBSCAN?",
+          "answer": "Density-based clustering using ε radius and minPts. Detects arbitrary shapes, filters outliers.",
+          "tags": ["dbscan", "density"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What is density-based clustering’s advantage?",
+          "answer": "Can detect non-spherical clusters and handle noise.",
+          "tags": ["density clustering"],
+          "source": "syllabus",
+          "difficulty": "medium"
+        },
+        {
+          "question": "How is clustering used in marketing?",
+          "answer": "Groups customers with similar behavior for segmentation and personalized marketing.",
+          "tags": ["industry", "marketing"],
           "source": "out_of_syllabus",
           "difficulty": "medium"
+        },
+        {
+          "question": "How does Spotify use clustering?",
+          "answer": "Clusters users by listening patterns for recommendations. Constraint: scalability and cold start.",
+          "tags": ["industry", "spotify", "recommendation"],
+          "source": "out_of_syllabus",
+          "difficulty": "hard"
         }
       ]
     }

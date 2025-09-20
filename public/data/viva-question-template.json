@@ -1,0 +1,16 @@
+{
+  "units": [
+    {
+      "title": "Unit 1 - [Subject Name]",
+      "vivaQuestions": [
+        {
+          "question": "What is [concept]?",
+          "answer": "Explanation of [concept].",
+          "tags": ["concept", "definition"],
+          "source": "syllabus",
+          "difficulty": "easy"
+        }
+      ]
+    }
+  ]
+}
